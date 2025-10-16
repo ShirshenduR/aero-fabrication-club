@@ -144,7 +144,7 @@ export default function Footer() {
               <p>Aero Fabrication Club</p>
               <p>IIITDMJ</p>
               <p>Email: afc@iiitdmj.ac.in</p>
-              <p>Phone: +91 85428 27761</p>
+              <p>Phone: +91 70009 47461</p>
             </address>
           </div>
         </div>
