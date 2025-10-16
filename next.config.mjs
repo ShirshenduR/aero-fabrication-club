@@ -21,8 +21,6 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
-  reactStrictMode: true,
-  distDir: 'build',
 }
 
 mergeConfig(nextConfig, userConfig)
