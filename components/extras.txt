@@ -1,0 +1,160 @@
+// {/* Technical Team */}
+// <section className="py-20 bg-gradient-to-b from-blue-950/10 to-black">
+//   <div className="container mx-auto px-4">
+//     <h2 className="text-4xl font-bold mb-12 text-center">
+//       TECHNICAL TEAM
+//     </h2>
+
+//     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+//       {[1, 2, 3, 4, 5, 6, 7, 8].map((member) => (
+//         <div
+//           key={member}
+//           className="bg-gradient-to-b from-blue-950/30 to-black border border-blue-900/20 rounded-lg overflow-hidden card-hover"
+//         >
+//           <div className="relative h-64">
+//             <Image
+//               src={`/placeholder.svg?height=300&width=300`}
+//               alt={`Team Member ${member}`}
+//               width={300}
+//               height={300}
+//               className="object-cover w-full h-full"
+//             />
+//           </div>
+//           <div className="p-4 text-center">
+//             <h3 className="font-bold">Team Member {member}</h3>
+//             <p className="text-sm text-gray-400">Technical Specialist</p>
+//           </div>
+//         </div>
+//       ))}
+//     </div>
+//   </div>
+// </section>
+
+// {/* Other Teams */}
+// <section className="py-20 bg-black">
+//   <div className="container mx-auto px-4">
+//     <h2 className="text-4xl font-bold mb-12 text-center">
+//       OTHER TEAM MEMBERS
+//     </h2>
+
+//     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+//       <div>
+//         <h3 className="text-2xl font-bold mb-6 text-primary">
+//           Management Team
+//         </h3>
+//         <div className="space-y-4">
+//           {[1, 2, 3, 4].map((member) => (
+//             <div
+//               key={member}
+//               className="bg-gradient-to-b from-blue-950/30 to-black border border-blue-900/20 rounded-lg p-4 flex items-center gap-4 card-hover"
+//             >
+//               <div className="relative w-12 h-12 rounded-full overflow-hidden">
+//                 <Image
+//                   src={`/placeholder.svg?height=100&width=100`}
+//                   alt={`Management Member ${member}`}
+//                   width={100}
+//                   height={100}
+//                   className="object-cover"
+//                 />
+//               </div>
+//               <div>
+//                 <h4 className="font-bold">Management Member {member}</h4>
+//                 <p className="text-sm text-gray-400">
+//                   Management Specialist
+//                 </p>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+
+//       <div>
+//         <h3 className="text-2xl font-bold mb-6 text-primary">
+//           Finance Team
+//         </h3>
+//         <div className="space-y-4">
+//           {[1, 2, 3, 4].map((member) => (
+//             <div
+//               key={member}
+//               className="bg-gradient-to-b from-blue-950/30 to-black border border-blue-900/20 rounded-lg p-4 flex items-center gap-4 card-hover"
+//             >
+//               <div className="relative w-12 h-12 rounded-full overflow-hidden">
+//                 <Image
+//                   src={`/placeholder.svg?height=100&width=100`}
+//                   alt={`Finance Member ${member}`}
+//                   width={100}
+//                   height={100}
+//                   className="object-cover"
+//                 />
+//               </div>
+//               <div>
+//                 <h4 className="font-bold">Finance Member {member}</h4>
+//                 <p className="text-sm text-gray-400">
+//                   Finance Specialist
+//                 </p>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+
+//     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+//       <div>
+//         <h3 className="text-2xl font-bold mb-6 text-primary">
+//           Events Team
+//         </h3>
+//         <div className="space-y-4">
+//           {[1, 2, 3, 4].map((member) => (
+//             <div
+//               key={member}
+//               className="bg-gradient-to-b from-blue-950/30 to-black border border-blue-900/20 rounded-lg p-4 flex items-center gap-4 card-hover"
+//             >
+//               <div className="relative w-12 h-12 rounded-full overflow-hidden">
+//                 <Image
+//                   src={`/placeholder.svg?height=100&width=100`}
+//                   alt={`Management Member ${member}`}
+//                   width={100}
+//                   height={100}
+//                   className="object-cover"
+//                 />
+//               </div>
+//               <div>
+//                 <h4 className="font-bold">Management Member {member}</h4>
+//                 <p className="text-sm text-gray-400">Events</p>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+
+//       <div>
+//         <h3 className="text-2xl font-bold mb-6 text-primary">
+//           Social Media
+//         </h3>
+//         <div className="space-y-4">
+//           {[1, 2, 3, 4].map((member) => (
+//             <div
+//               key={member}
+//               className="bg-gradient-to-b from-blue-950/30 to-black border border-blue-900/20 rounded-lg p-4 flex items-center gap-4 card-hover"
+//             >
+//               <div className="relative w-12 h-12 rounded-full overflow-hidden">
+//                 <Image
+//                   src={`/placeholder.svg?height=100&width=100`}
+//                   alt={`R&D Member ${member}`}
+//                   width={100}
+//                   height={100}
+//                   className="object-cover"
+//                 />
+//               </div>
+//               <div>
+//                 <h4 className="font-bold">R&D Member {member}</h4>
+//                 <p className="text-sm text-gray-400">Social Media</p>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// </section>
