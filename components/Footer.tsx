@@ -147,37 +147,34 @@ export default function Footer() {
           align="center"
           gap={{ base: 2, md: 4 }}
         >
-          <Text fontSize={{ base: 'xs', md: 'sm' }} color="gray.300" textAlign="center">
-            © {new Date().getFullYear()} Aero Fabrication Club. All rights
-            reserved.
-          </Text>
+          <Flex direction="column" gap={1} align={{ base: 'center', md: 'flex-start' }}>
+            <Text fontSize={{ base: 'xs', md: 'sm' }} color="gray.300" textAlign={{ base: 'center', md: 'left' }}>
+              © {new Date().getFullYear()} Aero Fabrication Club. All rights reserved.
+            </Text>
+            <Text fontSize={{ base: 'xs', md: 'sm' }} color="gray.400" textAlign={{ base: 'center', md: 'left' }}>
+              Made by{' '}
+              <Text
+                as="a"
+                href="https://linkedin.com/in/shirshendur"
+                target="_blank"
+                rel="noopener noreferrer"
+                color="#00d4ff"
+                fontWeight="semibold"
+                _hover={{
+                  color: '#0ea5e9',
+                  textDecoration: 'underline',
+                }}
+                transition="all 0.3s ease"
+              >
+                Shirshendu R Tripathi
+              </Text>
+            </Text>
+          </Flex>
           <Text fontSize={{ base: 'xs', md: 'sm' }} color="gray.300" textAlign="center">
             PDPM Indian Institute of Information Technology, Design and
             Manufacturing, Jabalpur
           </Text>
         </Flex>
-
-        {/* Made By Section */}
-        <Box mt={{ base: 4, md: 6 }} textAlign="center">
-          <Text fontSize={{ base: 'xs', md: 'sm' }} color="gray.400">
-            Made with ❤️ by{' '}
-            <Text
-              as="a"
-              href="https://linkedin.com/in/shirshendur"
-              target="_blank"
-              rel="noopener noreferrer"
-              color="#00d4ff"
-              fontWeight="semibold"
-              _hover={{
-                color: '#0ea5e9',
-                textDecoration: 'underline',
-              }}
-              transition="all 0.3s ease"
-            >
-              Shirshendu R Tripathi
-            </Text>
-          </Text>
-        </Box>
       </Container>
     </Box>
   );
