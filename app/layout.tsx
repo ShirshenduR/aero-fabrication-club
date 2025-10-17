@@ -2,16 +2,15 @@ import type React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
+import { Providers } from "./providers";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AeroFabrication Club",
-  description: "Where Passion Meets Propulsion",
-  generator: "v0.dev",
+  title: "Aero Fabrication Club | IIITDM Jabalpur",
+  description: "Where Innovation Takes Flight - Designing, building, and flying innovative unmanned aerial vehicles",
 };
 
 export default function RootLayout({
@@ -24,22 +23,13 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/logo.png" />
       </head>
-      <body className={`${inter.className} bg-black text-white`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-        </ThemeProvider>
+      <body className={inter.className}>
+        <Providers>
+          <Navigation />
+          <main style={{ position: 'relative', zIndex: 1 }}>{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
 }
-
-import "./globals.css";
