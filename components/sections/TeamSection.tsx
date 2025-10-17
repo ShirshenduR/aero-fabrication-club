@@ -37,28 +37,28 @@ export default function TeamSection() {
     {
       name: 'Dr. Akshay Pandey',
       role: 'Faculty Incharge',
-      image: '/fic.jpeg',
+      image: '/images/team/fic.jpeg',
       description:
         'Providing guidance and mentorship to the team, bringing years of experience in aerospace engineering and research.',
     },
     {
       name: 'Chetan Anand Jhariya',
       role: 'Coordinator',
-      image: '/coordinator.jpeg',
+      image: '/images/team/coordinator.jpeg',
       description:
         "Leading the team's overall direction and strategy, coordinating between different sub-teams to ensure cohesive project execution.",
     },
     {
       name: 'Shashaank Srivastava',
       role: 'Co-Coordinator',
-      image: '/co-coordinator.jpeg',
+      image: '/images/team/co-coordinator.jpeg',
       description:
         'Supporting the coordination efforts and providing leadership in specific project areas, ensuring smooth day-to-day operations.',
     },
     {
       name: 'Rohit TM',
       role: 'Co-Coordinator',
-      image: '/co-coordinator1.jpg',
+      image: '/images/team/co-coordinator1.jpg',
       description:
         'Supporting the coordination efforts and providing leadership in specific project areas, ensuring smooth day-to-day operations.',
     },

@@ -21,7 +21,7 @@ const events = [
     title: 'Annual Drone Workshop',
     year: '2024',
     icon: FaUsers,
-    image: '/gallery1.jpg',
+    image: '/images/events/place.png',
     description:
       'Our flagship workshop series introducing students to drone design, assembly, and programming. Hands-on sessions covering basic to advanced concepts with expert mentors guiding participants through the complete drone building process.',
     color: '#00d4ff',
@@ -30,25 +30,25 @@ const events = [
     title: 'AFC Tech Talks',
     year: '2024',
     icon: FaRocket,
-    image: '/gallery2.jpg',
+    image: '/images/events/place.png',
     description:
       'Monthly technical seminars featuring industry experts, alumni, and professors discussing latest trends in UAV technology, autonomous systems, and aerospace innovations. Open to all students passionate about drones.',
     color: '#0ea5e9',
   },
   {
-    title: 'Internal Drone Racing League',
+    title: 'THRUST 3.0',
     year: '2024',
-    icon: FaTrophy,
-    image: '/gallery3.jpg',
+    icon: FaRocket,
+    image: '/images/events/place.png',
     description:
-      'Exciting intra-club competition where members compete in FPV drone racing challenges. Features multiple categories including speed trials, obstacle courses, and precision landing tasks.',
+      '3rd Iteration of Exciting Competition of Water Rockets where teams design, build, and launch water-propelled rockets to achieve maximum altitude and accuracy. Encourages innovation in lightweight materials and aerodynamics.',
     color: '#00d4ff',
   },
   {
     title: 'Project Exhibition Day',
     year: '2025',
     icon: FaCalendarAlt,
-    image: '/gallery4.jpg',
+    image: '/images/events/place.png',
     description:
       'Annual showcase of innovative projects developed by club members throughout the year. Features live demonstrations, technical presentations, and interactive displays of autonomous drones, surveillance systems, and racing quadcopters.',
     color: '#0ea5e9',

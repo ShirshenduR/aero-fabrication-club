@@ -101,7 +101,7 @@ export default function AboutSection() {
               }}
             >
               <Image
-                src="/about.jpg"
+                src="/images/about/about.jpg"
                 alt="Aero Fabrication Club Team"
                 fill
                 style={{ objectFit: 'cover' }}

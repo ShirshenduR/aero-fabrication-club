@@ -59,18 +59,19 @@ export default function HeroSection() {
         className="glow-animation-alt"
       />
 
-      <Container maxW="container.xl" position="relative" zIndex={1} px={{ base: 4, md: 6 }}>
+      <Container maxW="container.xl" position="relative" zIndex={1} px={{ base: 4, md: 6 }} py={{ base: 4, md: 0 }}>
         <Flex
           direction={{ base: 'column', lg: 'row' }}
           align="center"
           justify="space-between"
-          gap={{ base: 6, md: 8, lg: 12 }}
-          pt={{ base: 16, md: 20 }}
+          gap={{ base: 4, sm: 6, md: 8, lg: 12 }}
+          pt={{ base: 20, sm: 24, md: 24, lg: 20 }}
+          pb={{ base: 8, md: 0 }}
         >
-          <Stack spacing={{ base: 4, md: 6 }} flex={1} maxW={{ lg: '50%' }} w="full">
+          <Stack spacing={{ base: 3, sm: 4, md: 6 }} flex={1} maxW={{ lg: '50%' }} w="full">
             <MotionHeading
               as="h1"
-              fontSize={{ base: '2.5rem', xs: '3rem', sm: '3.5rem', md: '4.5rem', lg: '5.5rem', xl: '7xl' }}
+              fontSize={{ base: '2rem', xs: '2.5rem', sm: '3rem', md: '4rem', lg: '5rem', xl: '6xl' }}
               fontWeight="extrabold"
               lineHeight={{ base: '1.2', md: '1.1' }}
               letterSpacing="tight"
@@ -100,7 +101,7 @@ export default function HeroSection() {
             </MotionHeading>
 
             <MotionText
-              fontSize={{ base: 'lg', xs: 'xl', sm: '2xl', md: '2xl', lg: '3xl' }}
+              fontSize={{ base: 'md', xs: 'lg', sm: 'xl', md: 'xl', lg: '2xl' }}
               fontWeight="bold"
               color="#00d4ff"
               initial={{ opacity: 0, y: 20 }}
@@ -111,7 +112,7 @@ export default function HeroSection() {
             </MotionText>
 
             <MotionText
-              fontSize={{ base: 'sm', xs: 'md', md: 'lg' }}
+              fontSize={{ base: 'xs', xs: 'sm', sm: 'md', md: 'lg' }}
               color="gray.400"
               maxW="600px"
               lineHeight={{ base: '1.6', md: '1.7' }}
@@ -169,7 +170,7 @@ export default function HeroSection() {
 
           <MotionBox
             flex={1}
-            h={{ base: '300px', xs: '350px', sm: '400px', md: '500px', lg: '600px' }}
+            h={{ base: '250px', xs: '300px', sm: '350px', md: '450px', lg: '550px' }}
             w="100%"
             maxW={{ lg: '50%' }}
             initial={{ opacity: 0, scale: 0.8 }}
@@ -181,7 +182,7 @@ export default function HeroSection() {
             justifyContent="center"
           >
             <Drone3DCanvas 
-              height={{ base: '300px', xs: '350px', sm: '400px', md: '500px', lg: '600px' }}
+              height={{ base: '250px', xs: '300px', sm: '350px', md: '450px', lg: '550px' }}
               width="100%"
             />
           </MotionBox>

@@ -27,7 +27,7 @@ const projects = [
     id: 1,
     title: 'Micro Class UAV',
     category: 'Completed',
-    image: '/Project1.jpg',
+    image: '/images/projects/Project1.jpg',
     description: 'The club designed, built and flew a 3D printed RC Plane. The Micro Class UAV made trades between two potentially conflicting requirements: carrying the highest payload fraction possible and pursuing the lowest empty weight possible.',
     tags: ['3D Printing', 'RC Plane', 'Payload Optimization'],
     details: 'Advanced lightweight design with optimized payload capacity. Features include autonomous flight control, real-time telemetry, and modular payload system.',
@@ -36,7 +36,7 @@ const projects = [
     id: 2,
     title: 'Autonomous UAV with Hotspot Detection',
     category: 'Completed',
-    image: '/Project2.jpg',
+    image: '/images/projects/Project2.jpg',
     description: 'The Club designed, built and flew an Autonomous unmanned aerial vehicle that met many anticipated requirements and was capable of hotspot detection.',
     tags: ['Autonomous', 'Thermal Imaging', 'AI/ML'],
     details: 'Equipped with thermal cameras and AI-powered detection algorithms. Can autonomously patrol areas and identify heat anomalies in real-time.',
@@ -45,7 +45,7 @@ const projects = [
     id: 3,
     title: 'Racing Drone',
     category: 'Completed',
-    image: '/Project3.jpg',
+    image: '/images/projects/Project3.jpg',
     description: 'The club designed, built and flew a high-speed, agile unmanned aerial vehicle designed specifically for competitive racing. Its sleek, aerodynamic frame is typically made from lightweight carbon fiber to maximize speed and maneuverability.',
     tags: ['Racing', 'Carbon Fiber', 'High-Speed'],
     details: 'Top speed of 120+ km/h with sub-3 second 0-100 acceleration. Features FPV camera system and advanced flight controller.',
@@ -54,7 +54,7 @@ const projects = [
     id: 4,
     title: 'Tactical UAV',
     category: 'Ongoing',
-    image: '/ongoingProject1.jpg',
+    image: '/images/projects/ongoingProject1.jpg',
     description: 'A mid-range tactical UAV designed for surveillance and reconnaissance missions with extended flight time and advanced payload capabilities.',
     tags: ['Surveillance', 'Long Range', 'Advanced Sensors'],
     details: 'Under development: 2-hour flight time, 10km range, HD video transmission, and multi-sensor integration.',
@@ -63,7 +63,7 @@ const projects = [
     id: 5,
     title: 'Hybrid VTOL Drone',
     category: 'Ongoing',
-    image: '/ongoingProject2.jpg',
+    image: '/images/projects/ongoingProject2.jpg',
     description: 'An innovative hybrid drone combining vertical takeoff and landing capabilities with efficient fixed-wing flight for extended range missions.',
     tags: ['VTOL', 'Hybrid', 'Long Endurance'],
     details: 'Combines quadcopter and fixed-wing capabilities for versatile mission profiles. Target endurance: 3 hours.',
@@ -72,7 +72,7 @@ const projects = [
     id: 6,
     title: 'Swarm Robotics',
     category: 'Ongoing',
-    image: '/futureProject1.jpg',
+    image: '/images/projects/futureProject1.jpg',
     description: 'Multiple autonomous drones working together in coordinated swarm behavior for complex mission scenarios.',
     tags: ['Swarm AI', 'Multi-Agent', 'Coordination'],
     details: 'Research project exploring decentralized swarm intelligence with 5+ drones operating in synchronized formation.',
@@ -90,7 +90,7 @@ export default function ProjectsSection() {
   };
 
   return (
-    <Box id="projects" py={20} bg="transparent" position="relative">
+    <Box id="projects" py={{ base: 12, md: 16, lg: 20 }} bg="transparent" position="relative">
       <Container maxW="7xl">
         <MotionBox
           initial={{ opacity: 0, y: 20 }}

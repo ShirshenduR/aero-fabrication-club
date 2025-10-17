@@ -106,7 +106,7 @@ export default function Navigation() {
             transition="transform 0.2s"
           >
             <Image
-              src="/logo.png"
+              src="/images/misc/logo.png"
               alt="Aero Fabrication Club"
               height="50px"
               width="auto"
@@ -135,13 +135,20 @@ export default function Navigation() {
         {isOpen && (
           <MotionBox
             pb={4}
+            pt={2}
             display={{ md: 'none' }}
+            bg="rgba(10, 14, 39, 0.98)"
+            backdropFilter="blur(20px)"
+            borderRadius="md"
+            borderWidth="1px"
+            borderColor="rgba(0, 212, 255, 0.3)"
+            boxShadow="0 8px 32px rgba(0, 212, 255, 0.2)"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 } as any}
           >
-            <Stack as="nav" spacing={2}>
+            <Stack as="nav" spacing={2} p={2}>
               {navLinks.map((link) => (
                 <NavLink key={link.href} href={link.href} onClick={onClose}>
                   {link.label}

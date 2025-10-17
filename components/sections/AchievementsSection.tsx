@@ -35,7 +35,7 @@ export default function AchievementsSection() {
       title: 'Autonomous Drone-Aerothon 2022',
       year: '2022',
       award: '2nd Place - Design Phase',
-      image: '/Achievement1.jpg',
+      image: '/images/achievements/Achievement1.jpg',
       description:
         'Secured 2nd place in the design phase of the prestigious Autonomous Drone-Aerothon22, competing against top engineering colleges nationwide. Our innovative autonomous navigation system impressed the judges.',
       icon: FaMedal,
@@ -46,7 +46,7 @@ export default function AchievementsSection() {
       title: 'SAE Indian Southern Section DDC 2023',
       year: '2023',
       award: '1st Place - Best Aerodynamics (CFD)',
-      image: '/Achievement2.jpg',
+      image: '/images/achievements/Achievement2.jpg',
       description:
         'Won 1st place in Best Aerodynamics Analysis (CFD) category at SAE Indian Southern Section DDC 23. Our advanced computational fluid dynamics simulation demonstrated superior airframe design optimization.',
       icon: FaTrophy,
@@ -57,7 +57,7 @@ export default function AchievementsSection() {
       title: 'IIT Roorkee Cognizance Tech Fest',
       year: '2023',
       award: '3rd Place - Flight Fury',
-      image: '/Achievement3.jpg',
+      image: '/images/achievements/Achievement3.jpg',
       description:
         'Achieved 3rd place in Flight Fury competition at IIT Roorkee\'s prestigious Cognizance Tech Fest. Competed in challenging aerial maneuvers and precision flying tasks against 50+ teams.',
       icon: FaAward,
@@ -112,7 +112,7 @@ export default function AchievementsSection() {
   };
 
   return (
-    <Box id="achievements" py={20} bg="transparent" ref={ref}>
+    <Box id="achievements" py={{ base: 12, md: 16, lg: 20 }} bg="transparent" ref={ref}>
       <Container maxW="container.xl">
         <MotionBox
           initial={{ opacity: 0, y: -20 }}
