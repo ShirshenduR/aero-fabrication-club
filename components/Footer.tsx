@@ -156,6 +156,28 @@ export default function Footer() {
             Manufacturing, Jabalpur
           </Text>
         </Flex>
+
+        {/* Made By Section */}
+        <Box mt={{ base: 4, md: 6 }} textAlign="center">
+          <Text fontSize={{ base: 'xs', md: 'sm' }} color="gray.400">
+            Made with ❤️ by{' '}
+            <Text
+              as="a"
+              href="https://linkedin.com/in/shirshendur"
+              target="_blank"
+              rel="noopener noreferrer"
+              color="#00d4ff"
+              fontWeight="semibold"
+              _hover={{
+                color: '#0ea5e9',
+                textDecoration: 'underline',
+              }}
+              transition="all 0.3s ease"
+            >
+              Shirshendu R Tripathi
+            </Text>
+          </Text>
+        </Box>
       </Container>
     </Box>
   );
