@@ -1,8 +1,24 @@
 'use client';
 
-import { Box, Container, Heading, Text, Stack, Button, Flex } from '@chakra-ui/react';
+import { Box, Container, Heading, Text, Stack, Button, Flex, Spinner } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import dynamic from 'next/dynamic';
+
+const Drone3DCanvas = dynamic(() => import('../Drone3DCanvas'), { 
+  ssr: false,
+  loading: () => (
+    <Box 
+      h="100%" 
+      w="100%" 
+      bg="transparent" 
+      display="flex" 
+      alignItems="center" 
+      justifyContent="center"
+    >
+      <Spinner size="xl" color="#00d4ff" thickness="4px" />
+    </Box>
+  )
+});
 
 const MotionBox = motion(Box);
 const MotionHeading = motion(Heading);
@@ -43,19 +59,20 @@ export default function HeroSection() {
         className="glow-animation-alt"
       />
 
-      <Container maxW="container.xl" position="relative" zIndex={1}>
+      <Container maxW="container.xl" position="relative" zIndex={1} px={{ base: 4, md: 6 }}>
         <Flex
           direction={{ base: 'column', lg: 'row' }}
           align="center"
           justify="space-between"
-          gap={8}
+          gap={{ base: 6, md: 8, lg: 12 }}
+          pt={{ base: 16, md: 20 }}
         >
-          <Stack spacing={6} flex={1} maxW={{ lg: '50%' }}>
+          <Stack spacing={{ base: 4, md: 6 }} flex={1} maxW={{ lg: '50%' }} w="full">
             <MotionHeading
               as="h1"
-              fontSize={{ base: '4xl', md: '6xl', lg: '7xl' }}
+              fontSize={{ base: '2.5rem', xs: '3rem', sm: '3.5rem', md: '4.5rem', lg: '5.5rem', xl: '7xl' }}
               fontWeight="extrabold"
-              lineHeight="1.1"
+              lineHeight={{ base: '1.2', md: '1.1' }}
               letterSpacing="tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -83,7 +100,7 @@ export default function HeroSection() {
             </MotionHeading>
 
             <MotionText
-              fontSize={{ base: 'xl', md: '2xl', lg: '3xl' }}
+              fontSize={{ base: 'lg', xs: 'xl', sm: '2xl', md: '2xl', lg: '3xl' }}
               fontWeight="bold"
               color="#00d4ff"
               initial={{ opacity: 0, y: 20 }}
@@ -94,9 +111,10 @@ export default function HeroSection() {
             </MotionText>
 
             <MotionText
-              fontSize={{ base: 'md', md: 'lg' }}
+              fontSize={{ base: 'sm', xs: 'md', md: 'lg' }}
               color="gray.400"
               maxW="600px"
+              lineHeight={{ base: '1.6', md: '1.7' }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 } as any}
@@ -110,14 +128,15 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 } as any}
             >
-              <Stack direction={{ base: 'column', sm: 'row' }} spacing={4}>
+              <Stack direction={{ base: 'column', sm: 'row' }} spacing={{ base: 3, md: 4 }} w="full">
                 <Button
-                  size="lg"
+                  size={{ base: 'md', md: 'lg' }}
                   bg="#00d4ff"
                   color="black"
-                  px={8}
-                  py={6}
-                  fontSize="lg"
+                  px={{ base: 6, md: 8 }}
+                  py={{ base: 5, md: 6 }}
+                  fontSize={{ base: 'md', md: 'lg' }}
+                  w={{ base: 'full', sm: 'auto' }}
                   onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                   _hover={{
                     bg: '#0ea5e9',
@@ -128,13 +147,14 @@ export default function HeroSection() {
                   Explore Projects
                 </Button>
                 <Button
-                  size="lg"
+                  size={{ base: 'md', md: 'lg' }}
                   variant="outline"
                   borderColor="#00d4ff"
                   color="#00d4ff"
-                  px={8}
-                  py={6}
-                  fontSize="lg"
+                  px={{ base: 6, md: 8 }}
+                  py={{ base: 5, md: 6 }}
+                  fontSize={{ base: 'md', md: 'lg' }}
+                  w={{ base: 'full', sm: 'auto' }}
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                   _hover={{
                     bg: "rgba(0, 212, 255, 0.1)",
@@ -149,7 +169,7 @@ export default function HeroSection() {
 
           <MotionBox
             flex={1}
-            h={{ base: '400px', md: '600px' }}
+            h={{ base: '300px', xs: '350px', sm: '400px', md: '500px', lg: '600px' }}
             w="100%"
             maxW={{ lg: '50%' }}
             initial={{ opacity: 0, scale: 0.8 }}
@@ -160,20 +180,10 @@ export default function HeroSection() {
             alignItems="center"
             justifyContent="center"
           >
-            <Box
-              position="relative"
-              width={{ base: '300px', md: '450px', lg: '550px' }}
-              height={{ base: '300px', md: '450px', lg: '550px' }}
-              className="drone-float"
-            >
-              <Image
-                src="/drone3new.png"
-                alt="AFC Drone"
-                fill
-                style={{ objectFit: 'contain' }}
-                priority
-              />
-            </Box>
+            <Drone3DCanvas 
+              height={{ base: '300px', xs: '350px', sm: '400px', md: '500px', lg: '600px' }}
+              width="100%"
+            />
           </MotionBox>
         </Flex>
       </Container>
@@ -194,7 +204,7 @@ export default function HeroSection() {
       >
         <Box
           w="2px"
-          h="60px"
+          h={{ base: '40px', md: '60px' }}
           bgGradient="linear(to-b, #00d4ff, transparent)"
           borderRadius="full"
         />
@@ -218,19 +228,6 @@ export default function HeroSection() {
         
         .glow-animation-alt {
           animation: glow 10s ease-in-out infinite reverse;
-        }
-        
-        @keyframes droneFloat {
-          0%, 100% {
-            transform: translateY(0px) rotate(0deg);
-          }
-          50% {
-            transform: translateY(-20px) rotate(2deg);
-          }
-        }
-        
-        .drone-float {
-          animation: droneFloat 4s ease-in-out infinite;
         }
       `}</style>
     </Box>

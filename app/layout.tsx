@@ -23,7 +23,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/logo.png" />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} style={{ background: '#0a0e27' }}>
         <Providers>
           <Navigation />
           <main style={{ position: 'relative', zIndex: 1 }}>{children}</main>

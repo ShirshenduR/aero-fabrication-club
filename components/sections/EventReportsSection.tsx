@@ -57,27 +57,27 @@ const events = [
 
 export default function EventReportsSection() {
   return (
-    <Box id="events" py={20} bg="transparent">
-      <Container maxW="7xl">
+    <Box id="events" py={{ base: 12, md: 16, lg: 20 }} bg="transparent">
+      <Container maxW="7xl" px={{ base: 4, md: 6 }}>
         <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           textAlign="center"
-          mb={16}
+          mb={{ base: 8, md: 12, lg: 16 }}
         >
           <Heading
             as="h2"
-            fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}
+            fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
             fontWeight="bold"
             bgGradient="linear(to-r, #00d4ff, #0ea5e9)"
             bgClip="text"
-            mb={4}
+            mb={{ base: 3, md: 4 }}
           >
             Events & Competitions
           </Heading>
-          <Text fontSize="xl" color="gray.300" maxW="2xl" mx="auto">
+          <Text fontSize={{ base: 'sm', sm: 'md', md: 'lg', lg: 'xl' }} color="gray.300" maxW="2xl" mx="auto" px={{ base: 2, md: 0 }}>
             Workshops, competitions, and activities hosted by our club throughout the year
           </Text>
         </MotionBox>

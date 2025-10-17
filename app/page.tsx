@@ -13,7 +13,7 @@ import ContactSection from '@/components/sections/ContactSection';
 
 export default function Home() {
   return (
-    <>
+    <Box position="relative" minH="100vh">
       <InteractiveDotBackground />
       <Box position="relative" zIndex={1}>
         <HeroSection />
@@ -25,6 +25,6 @@ export default function Home() {
         <TeamSection />
         <ContactSection />
       </Box>
-    </>
+    </Box>
   );
 }

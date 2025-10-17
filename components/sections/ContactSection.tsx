@@ -61,33 +61,33 @@ export default function ContactSection() {
   ];
 
   return (
-    <Box id="contact" py={20} bg="transparent" ref={ref}>
-      <Container maxW="container.xl">
+    <Box id="contact" py={{ base: 12, md: 16, lg: 20 }} bg="transparent" ref={ref}>
+      <Container maxW="container.xl" px={{ base: 4, md: 6 }}>
         <MotionBox
           initial={{ opacity: 0, y: -20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           textAlign="center"
-          mb={16}
+          mb={{ base: 8, md: 12, lg: 16 }}
         >
           <Heading
             as="h2"
-            fontSize={{ base: '3xl', md: '5xl' }}
+            fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
             fontWeight="extrabold"
-            mb={4}
+            mb={{ base: 3, md: 4 }}
             bgGradient="linear(to-r, #00d4ff, #0ea5e9)"
             bgClip="text"
           >
             Get In Touch
           </Heading>
-          <Text fontSize="lg" color="gray.300" maxW="3xl" mx="auto">
+          <Text fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} color="gray.300" maxW="3xl" mx="auto" px={{ base: 2, md: 0 }}>
             Have questions or want to collaborate? We'd love to hear from you!
           </Text>
         </MotionBox>
 
         <Grid
           templateColumns={{ base: '1fr', lg: 'repeat(2, 1fr)' }}
-          gap={12}
+          gap={{ base: 8, md: 10, lg: 12 }}
         >
           {/* Google Maps Location */}
           <MotionBox

@@ -9,12 +9,12 @@ const MotionBox = motion(Box);
 const MotionGridItem = motion(GridItem);
 
 const galleryImages = [
-  { id: 1, src: '/gallery1.jpg', alt: 'Drone Project 1', description: 'Advanced quadcopter design', span: 2, rowSpan: 2 },
-  { id: 2, src: '/gallery2.jpg', alt: 'Drone Project 2', description: 'Flight testing session', span: 1, rowSpan: 1 },
-  { id: 3, src: '/gallery3.jpg', alt: 'Workshop 1', description: 'Electronics workshop', span: 1, rowSpan: 1 },
-  { id: 4, src: '/gallery4.jpg', alt: 'Team Photo 1', description: 'Team collaboration', span: 1, rowSpan: 2 },
-  { id: 5, src: '/drone1.png', alt: 'Drone Project 3', description: 'Custom frame assembly', span: 2, rowSpan: 1 },
-  { id: 6, src: '/drone2.jpg', alt: 'Event 1', description: 'Annual drone competition', span: 1, rowSpan: 1 },
+  { id: 1, src: '/gallery1.jpg', alt: 'Drone Project 1', description: 'Advanced quadcopter design', span: 2, rowSpan: 2, mobileSpan: 2, mobileRowSpan: 2 },
+  { id: 2, src: '/gallery2.jpg', alt: 'Drone Project 2', description: 'Flight testing session', span: 1, rowSpan: 1, mobileSpan: 1, mobileRowSpan: 1 },
+  { id: 3, src: '/gallery3.jpg', alt: 'Workshop 1', description: 'Electronics workshop', span: 1, rowSpan: 1, mobileSpan: 1, mobileRowSpan: 1 },
+  { id: 4, src: '/gallery4.jpg', alt: 'Team Photo 1', description: 'Team collaboration', span: 1, rowSpan: 2, mobileSpan: 2, mobileRowSpan: 1 },
+  { id: 5, src: '/drone1.png', alt: 'Drone Project 3', description: 'Custom frame assembly', span: 2, rowSpan: 1, mobileSpan: 2, mobileRowSpan: 1 },
+  { id: 6, src: '/drone2.jpg', alt: 'Event 1', description: 'Annual drone competition', span: 1, rowSpan: 1, mobileSpan: 2, mobileRowSpan: 1 },
 ];
 
 export default function GallerySection() {
@@ -26,11 +26,11 @@ export default function GallerySection() {
   };
 
   return (
-    <Box id="gallery" py={20} bg="transparent" position="relative">
-      <Container maxW="container.xl">
+    <Box id="gallery" py={{ base: 12, md: 20 }} bg="transparent" position="relative">
+      <Container maxW="container.xl" px={{ base: 4, md: 6 }}>
         <MotionBox
           textAlign="center"
-          mb={16}
+          mb={{ base: 8, md: 16 }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -38,22 +38,22 @@ export default function GallerySection() {
         >
           <Heading
             as="h2"
-            size="2xl"
+            size={{ base: 'xl', md: '2xl' }}
             mb={4}
             bgGradient="linear(to-r, #00d4ff, #0ea5e9)"
             bgClip="text"
           >
             Gallery
           </Heading>
-          <Text fontSize="lg" color="gray.400">
+          <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.400">
             Capturing our journey in aerial innovation
           </Text>
         </MotionBox>
 
         <Grid
           templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }}
-          gap={4}
-          autoRows="200px"
+          gap={{ base: 2, md: 4 }}
+          autoRows={{ base: '150px', md: '200px' }}
         >
           <AnimatePresence>
             {galleryImages.map((image, index) => {
@@ -62,8 +62,8 @@ export default function GallerySection() {
               return (
                 <MotionGridItem
                   key={image.id}
-                  colSpan={isExpanded ? { base: 2, md: 4 } : { base: image.span, md: image.span }}
-                  rowSpan={isExpanded ? { base: 3, md: 3 } : image.rowSpan}
+                  colSpan={isExpanded ? { base: 2, md: 4 } : { base: image.mobileSpan, md: image.span }}
+                  rowSpan={isExpanded ? { base: 2, md: 3 } : { base: image.mobileRowSpan, md: image.rowSpan }}
                   layout
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -79,7 +79,7 @@ export default function GallerySection() {
                   onMouseLeave={() => setHoveredId(null)}
                   position="relative"
                   overflow="hidden"
-                  borderRadius="lg"
+                  borderRadius={{ base: 'md', md: 'lg' }}
                   border="2px solid"
                   borderColor={hoveredId === image.id || isExpanded ? '#00d4ff' : 'rgba(0,212,255,0.2)'}
                   boxShadow={hoveredId === image.id || isExpanded ? '0 0 20px rgba(0,212,255,0.5)' : 'none'}
@@ -105,7 +105,7 @@ export default function GallerySection() {
                     bottom={0}
                     left={0}
                     right={0}
-                    p={isExpanded ? 6 : 4}
+                    p={isExpanded ? { base: 4, md: 6 } : { base: 2, md: 4 }}
                     bg="linear-gradient(to top, rgba(10,14,39,0.95), transparent)"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: (hoveredId === image.id || isExpanded) ? 1 : 0 }}
@@ -114,7 +114,7 @@ export default function GallerySection() {
                     <Text 
                       color="white" 
                       fontWeight="bold" 
-                      fontSize={isExpanded ? "2xl" : "md"}
+                      fontSize={isExpanded ? { base: 'lg', md: '2xl' } : { base: 'xs', md: 'md' }}
                       transition="font-size 0.3s ease"
                     >
                       {image.description}
@@ -125,7 +125,7 @@ export default function GallerySection() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 } as any}
                       >
-                        <Text color="gray.300" mt={2} fontSize="md">
+                        <Text color="gray.300" mt={2} fontSize={{ base: 'xs', md: 'md' }}>
                           Click to collapse
                         </Text>
                       </MotionBox>

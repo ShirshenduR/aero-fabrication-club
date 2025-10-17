@@ -124,25 +124,25 @@ export default function TeamSection() {
   };
 
   return (
-    <Box id="team" py={20} bg="transparent" ref={ref}>
-      <Container maxW="container.xl">
+    <Box id="team" py={{ base: 12, md: 16, lg: 20 }} bg="transparent" ref={ref}>
+      <Container maxW="container.xl" px={{ base: 4, md: 6 }}>
         <MotionBox
           initial={{ opacity: 0, y: -20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           textAlign="center"
-          mb={16}
+          mb={{ base: 8, md: 12, lg: 16 }}
         >
           <Heading
             as="h2"
-            fontSize={{ base: '3xl', md: '5xl' }}
+            fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
             fontWeight="extrabold"
-            mb={4}
+            mb={{ base: 3, md: 4 }}
             color="white"
           >
             OUR TEAM
           </Heading>
-          <Text fontSize="lg" color="gray.400" maxW="3xl" mx="auto">
+          <Text fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} color="gray.400" maxW="3xl" mx="auto" px={{ base: 2, md: 0 }}>
             Meet the passionate individuals driving innovation and excellence in
             aerospace engineering
           </Text>
@@ -155,8 +155,8 @@ export default function TeamSection() {
             sm: 'repeat(2, 1fr)',
             lg: 'repeat(4, 1fr)',
           }}
-          gap={8}
-          mb={20}
+          gap={{ base: 6, md: 8 }}
+          mb={{ base: 12, md: 16, lg: 20 }}
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}

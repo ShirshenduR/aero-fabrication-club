@@ -54,29 +54,29 @@ export default function Footer() {
       zIndex={10}
       mt={20}
     >
-      <Container maxW="container.xl" py={12}>
+      <Container maxW="container.xl" py={{ base: 8, md: 12 }} px={{ base: 4, md: 6 }}>
         <Flex
           direction={{ base: 'column', lg: 'row' }}
           justify="space-between"
-          align={{ base: 'start', lg: 'start' }}
-          gap={8}
+          align={{ base: 'center', lg: 'start' }}
+          gap={{ base: 6, md: 8 }}
         >
           {/* Club Info */}
-          <Stack spacing={4} maxW="400px">
+          <Stack spacing={4} maxW="400px" align={{ base: 'center', lg: 'start' }} textAlign={{ base: 'center', lg: 'left' }} w={{ base: 'full', lg: 'auto' }}>
             <Heading
               as="h3"
-              fontSize="2xl"
+              fontSize={{ base: 'xl', md: '2xl' }}
               fontWeight="bold"
               bgGradient="linear(to-r, #00d4ff, #0ea5e9)"
               bgClip="text"
             >
               AERO FABRICATION CLUB
             </Heading>
-            <Text fontSize="sm" color="gray.400">
+            <Text fontSize={{ base: 'xs', md: 'sm' }} color="gray.400">
               Where Innovation Takes Flight. Designing, building, and flying
               innovative unmanned aerial vehicles at IIITDM Jabalpur.
             </Text>
-            <HStack spacing={3}>
+            <HStack spacing={3} justify={{ base: 'center', lg: 'start' }}>
               {socialLinks.map((social, index) => (
                 <Button
                   key={index}
@@ -92,15 +92,15 @@ export default function Footer() {
                     transform: 'translateY(-2px)',
                   }}
                 >
-                  <Icon as={social.icon} boxSize={5} />
+                  <Icon as={social.icon} boxSize={{ base: 4, md: 5 }} />
                 </Button>
               ))}
             </HStack>
           </Stack>
 
           {/* Quick Links */}
-          <Stack spacing={4}>
-            <Heading as="h4" fontSize="lg" fontWeight="semibold" color="white" mb={2}>
+          <Stack spacing={4} align={{ base: 'center', lg: 'start' }} textAlign={{ base: 'center', lg: 'left' }}>
+            <Heading as="h4" fontSize={{ base: 'md', md: 'lg' }} fontWeight="semibold" color="white" mb={2}>
               Quick Links
             </Heading>
             <Stack spacing={2}>
@@ -109,7 +109,7 @@ export default function Footer() {
                   key={index}
                   as="button"
                   onClick={() => scrollToSection(link.href)}
-                  fontSize="sm"
+                  fontSize={{ base: 'xs', md: 'sm' }}
                   cursor="pointer"
                   color="gray.300"
                   _hover={{
@@ -123,11 +123,11 @@ export default function Footer() {
           </Stack>
 
           {/* Contact Info */}
-          <Stack spacing={4}>
-            <Heading as="h4" fontSize="lg" fontWeight="semibold" color="white" mb={2}>
+          <Stack spacing={4} align={{ base: 'center', lg: 'start' }} textAlign={{ base: 'center', lg: 'left' }}>
+            <Heading as="h4" fontSize={{ base: 'md', md: 'lg' }} fontWeight="semibold" color="white" mb={2}>
               Contact Us
             </Heading>
-            <Stack spacing={2} fontSize="sm" color="gray.300">
+            <Stack spacing={2} fontSize={{ base: 'xs', md: 'sm' }} color="gray.300">
               <Text>AFC Workshop</Text>
               <Text>Above Canteen, Hall-1</Text>
               <Text>IIITDM Jabalpur</Text>
@@ -138,20 +138,20 @@ export default function Footer() {
           </Stack>
         </Flex>
 
-        <Divider my={8} borderColor={borderColor} />
+        <Divider my={{ base: 6, md: 8 }} borderColor={borderColor} />
 
         {/* Bottom Section */}
         <Flex
           direction={{ base: 'column', md: 'row' }}
           justify="space-between"
           align="center"
-          gap={4}
+          gap={{ base: 2, md: 4 }}
         >
-          <Text fontSize="sm" color="gray.300" textAlign={{ base: 'center', md: 'left' }}>
+          <Text fontSize={{ base: 'xs', md: 'sm' }} color="gray.300" textAlign="center">
             © {new Date().getFullYear()} Aero Fabrication Club. All rights
             reserved.
           </Text>
-          <Text fontSize="sm" color="gray.300" textAlign={{ base: 'center', md: 'right' }}>
+          <Text fontSize={{ base: 'xs', md: 'sm' }} color="gray.300" textAlign="center">
             PDPM Indian Institute of Information Technology, Design and
             Manufacturing, Jabalpur
           </Text>

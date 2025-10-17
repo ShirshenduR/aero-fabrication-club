@@ -88,12 +88,11 @@
 
 
 body {
-  background: linear-gradient(90deg, rgba(0,14,80,1) 0%, rgba(0,1,8,1) 22%, rgba(0,0,0,1) 50%, rgba(0,3,14,1) 78%, rgba(0,14,80,1) 100%);
+  background: #0a0e27;
   font-family: 'Milker', sans-serif;
   margin: 0; 
-  height: 100vh;
+  min-height: 100vh;
   color: white; 
-  font-family: 'Milker' ,sans-serif;
   scroll-behavior: smooth;
 } 
 

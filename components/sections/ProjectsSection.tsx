@@ -212,8 +212,32 @@ export default function ProjectsSection() {
 
       <Modal isOpen={isOpen} onClose={onClose} size="4xl" isCentered>
         <ModalOverlay bg="rgba(0, 0, 0, 0.9)" backdropFilter="blur(10px)" />
-        <ModalContent bg="#1a2142" border="2px solid #00d4ff" boxShadow="0 0 50px rgba(0, 212, 255, 0.5)">
-          <ModalCloseButton color="#00d4ff" _hover={{ bg: 'rgba(0, 212, 255, 0.2)' }} />
+        <ModalContent 
+          bg="#1a2142" 
+          border="2px solid #00d4ff" 
+          boxShadow="0 0 50px rgba(0, 212, 255, 0.5)"
+          mx={{ base: 4, md: 0 }}
+          my={{ base: 4, md: 0 }}
+        >
+          <ModalCloseButton 
+            color="#00d4ff" 
+            bg="rgba(0, 212, 255, 0.2)"
+            border="2px solid #00d4ff"
+            borderRadius="full"
+            size="lg"
+            top={4}
+            right={4}
+            fontSize="xl"
+            zIndex={10}
+            _hover={{ 
+              bg: '#00d4ff',
+              color: '#0a0e27',
+              transform: 'scale(1.1)',
+            }}
+            _active={{
+              bg: '#0ea5e9',
+            }}
+          />
           <ModalBody p={0}>
             {selectedProject && (
               <MotionBox
