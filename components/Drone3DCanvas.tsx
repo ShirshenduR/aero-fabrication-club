@@ -24,22 +24,17 @@ function Controls({ onInteractionChange }: { onInteractionChange: (interacting: 
     const handleTouchStart = (e: any) => {
       // Detect if it's a touch event
       if (e.touches || e.pointerType === 'touch') {
-        // Disable rotation immediately on touch
-        controls.enabled = false;
-        
         // Set timer to enable rotation after hold delay
         if (touchTimerRef.current) {
           clearTimeout(touchTimerRef.current);
         }
         
         touchTimerRef.current = setTimeout(() => {
-          controls.enabled = true;
           isTouchHoldRef.current = true;
           onInteractionChange(true);
         }, 300); // 300ms delay for long press
       } else {
         // Mouse click - enable immediately
-        controls.enabled = true;
         onInteractionChange(true);
       }
     };
@@ -48,7 +43,6 @@ function Controls({ onInteractionChange }: { onInteractionChange: (interacting: 
       if (touchTimerRef.current) {
         clearTimeout(touchTimerRef.current);
       }
-      controls.enabled = true; // Re-enable for next interaction
       if (isTouchHoldRef.current) {
         onInteractionChange(false);
       }
@@ -293,7 +287,8 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
         bottom={0}
         zIndex={1}
         style={{
-          touchAction: isInteracting ? 'none' : 'pan-y',
+          pointerEvents: isInteracting ? 'auto' : 'none',
+          touchAction: isInteracting ? 'none' : 'auto',
           WebkitTouchCallout: 'none',
           WebkitUserSelect: 'none',
           userSelect: 'none',
@@ -310,6 +305,7 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
             position: 'absolute',
             top: 0,
             left: 0,
+            pointerEvents: isInteracting ? 'auto' : 'none',
           }}
           gl={{ 
             antialias: true, 
