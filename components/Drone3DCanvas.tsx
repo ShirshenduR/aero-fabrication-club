@@ -13,13 +13,34 @@ interface Drone3DCanvasProps {
 
 function Controls({ onInteractionChange }: { onInteractionChange: (interacting: boolean) => void }) {
   const controlsRef = useRef<any>(null);
+  const touchTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const isTouchHoldRef = useRef(false);
 
   useEffect(() => {
     const controls = controlsRef.current;
     if (!controls) return;
 
-    const handleStart = () => onInteractionChange(true);
-    const handleEnd = () => onInteractionChange(false);
+    const handleStart = () => {
+      // Only trigger interaction after a delay for touch devices
+      if (touchTimerRef.current) {
+        clearTimeout(touchTimerRef.current);
+      }
+      
+      touchTimerRef.current = setTimeout(() => {
+        isTouchHoldRef.current = true;
+        onInteractionChange(true);
+      }, 200); // 200ms delay - enough to differentiate scroll from rotate
+    };
+    
+    const handleEnd = () => {
+      if (touchTimerRef.current) {
+        clearTimeout(touchTimerRef.current);
+      }
+      if (isTouchHoldRef.current) {
+        onInteractionChange(false);
+      }
+      isTouchHoldRef.current = false;
+    };
 
     controls.addEventListener('start', handleStart);
     controls.addEventListener('end', handleEnd);
@@ -27,6 +48,9 @@ function Controls({ onInteractionChange }: { onInteractionChange: (interacting: 
     return () => {
       controls.removeEventListener('start', handleStart);
       controls.removeEventListener('end', handleEnd);
+      if (touchTimerRef.current) {
+        clearTimeout(touchTimerRef.current);
+      }
     };
   }, [onInteractionChange]);
 
