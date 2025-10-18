@@ -13,9 +13,9 @@ import ContactSection from '@/components/sections/ContactSection';
 
 export default function Home() {
   return (
-    <Box position="relative" minH="100vh">
+    <Box position="relative" minH="100vh" w="100%" overflow="hidden">
       <InteractiveDotBackground />
-      <Box position="relative" zIndex={1}>
+      <Box position="relative" zIndex={1} w="100%">
         <HeroSection />
         <AboutSection />
         <ProjectsSection />

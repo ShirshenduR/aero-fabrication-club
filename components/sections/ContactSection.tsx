@@ -61,8 +61,8 @@ export default function ContactSection() {
   ];
 
   return (
-    <Box id="contact" py={{ base: 12, md: 16, lg: 20 }} bg="transparent" ref={ref}>
-      <Container maxW="container.xl" px={{ base: 4, md: 6 }}>
+    <Box id="contact" py={{ base: 12, md: 16, lg: 20 }} bg="transparent" ref={ref} w="100%" maxW="100%" overflow="hidden">
+      <Container maxW="container.xl" px={{ base: 4, md: 6 }} w="100%">
         <MotionBox
           initial={{ opacity: 0, y: -20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -88,6 +88,8 @@ export default function ContactSection() {
         <Grid
           templateColumns={{ base: '1fr', lg: 'repeat(2, 1fr)' }}
           gap={{ base: 8, md: 10, lg: 12 }}
+          w="100%"
+          maxW="100%"
         >
           {/* Google Maps Location */}
           <MotionBox
@@ -95,6 +97,8 @@ export default function ContactSection() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
             h="100%"
+            w="100%"
+            maxW="100%"
           >
             <Box
               bg={cardBg}
@@ -106,6 +110,8 @@ export default function ContactSection() {
               h="100%"
               display="flex"
               flexDirection="column"
+              w="100%"
+              maxW="100%"
             >
               <Heading 
                 as="h3" 
@@ -121,7 +127,9 @@ export default function ContactSection() {
               <Box
                 flex="1"
                 position="relative"
-                minH="450px"
+                minH={{ base: '300px', sm: '350px', md: '450px' }}
+                w="100%"
+                maxW="100%"
               >
                 <Box
                   as="iframe"
@@ -136,6 +144,9 @@ export default function ContactSection() {
                   referrerPolicy="no-referrer-when-downgrade"
                   title="H-1 IIITDM Jabalpur Location"
                   allowFullScreen
+                  sx={{
+                    maxWidth: '100%',
+                  }}
                 />
               </Box>
             </Box>
@@ -146,8 +157,10 @@ export default function ContactSection() {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
+            w="100%"
+            maxW="100%"
           >
-            <VStack spacing={6} align="stretch">
+            <VStack spacing={6} align="stretch" w="100%" maxW="100%">
               {contactInfo.map((info, index) => (
                 <Box
                   key={index}

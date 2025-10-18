@@ -26,7 +26,7 @@ export default function GallerySection() {
   };
 
   return (
-    <Box id="gallery" py={{ base: 12, md: 20 }} bg="transparent" position="relative">
+    <Box id="gallery" py={{ base: 12, md: 20 }} bg="transparent" position="relative" w="100%" maxW="100%" overflow="hidden">
       <Container maxW="container.xl" px={{ base: 4, md: 6 }}>
         <MotionBox
           textAlign="center"

@@ -89,9 +89,11 @@ export default function Navigation() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.3 } as any}
+      w="100%"
+      maxW="100%"
     >
-      <Container maxW="container.xl">
-        <Flex h={16} alignItems="center" justifyContent="space-between">
+      <Container maxW="container.xl" px={{ base: 4, md: 6 }}>
+        <Flex h={16} alignItems="center" justifyContent="space-between" w="100%">
           <Box
             as="a"
             href="#home"
@@ -104,16 +106,17 @@ export default function Navigation() {
               transform: 'scale(1.05)',
             }}
             transition="transform 0.2s"
+            flexShrink={0}
           >
             <Image
               src="/images/misc/logo.png"
               alt="Aero Fabrication Club"
-              height="50px"
+              height={{ base: '40px', sm: '45px', md: '50px' }}
               width="auto"
             />
           </Box>
 
-          <HStack spacing={2} display={{ base: 'none', md: 'flex' }}>
+          <HStack spacing={{ base: 1, lg: 2 }} display={{ base: 'none', md: 'flex' }} flexWrap="wrap" justifyContent="flex-end">
             {navLinks.map((link) => (
               <NavLink key={link.href} href={link.href}>
                 {link.label}
@@ -128,7 +131,9 @@ export default function Navigation() {
             onClick={isOpen ? onClose : onOpen}
             variant="ghost"
             color="white"
+            size={{ base: 'sm', sm: 'md' }}
             _hover={{ bg: 'rgba(0, 212, 255, 0.1)', color: '#00d4ff' }}
+            flexShrink={0}
           />
         </Flex>
 
@@ -147,6 +152,8 @@ export default function Navigation() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 } as any}
+            mx={-4}
+            mt={2}
           >
             <Stack as="nav" spacing={2} p={2}>
               {navLinks.map((link) => (

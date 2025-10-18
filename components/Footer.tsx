@@ -53,6 +53,8 @@ export default function Footer() {
       position="relative"
       zIndex={10}
       mt={20}
+      w="100%"
+      maxW="100%"
     >
       <Container maxW="container.xl" py={{ base: 8, md: 12 }} px={{ base: 4, md: 6 }}>
         <Flex
@@ -60,6 +62,7 @@ export default function Footer() {
           justify="space-between"
           align={{ base: 'center', lg: 'start' }}
           gap={{ base: 6, md: 8 }}
+          w="100%"
         >
           {/* Club Info */}
           <Stack spacing={4} maxW="400px" align={{ base: 'center', lg: 'start' }} textAlign={{ base: 'center', lg: 'left' }} w={{ base: 'full', lg: 'auto' }}>
@@ -170,7 +173,7 @@ export default function Footer() {
               </Text>
             </Text>
           </Flex>
-          <Text fontSize={{ base: 'xs', md: 'sm' }} color="gray.300" textAlign="center">
+          <Text fontSize={{ base: 'xs', md: 'sm' }} color="gray.300" textAlign="center" maxW={{ base: '100%', md: 'none' }} px={{ base: 2, md: 0 }}>
             PDPM Indian Institute of Information Technology, Design and
             Manufacturing, Jabalpur
           </Text>

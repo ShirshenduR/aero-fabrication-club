@@ -90,8 +90,8 @@ export default function ProjectsSection() {
   };
 
   return (
-    <Box id="projects" py={{ base: 12, md: 16, lg: 20 }} bg="transparent" position="relative">
-      <Container maxW="7xl">
+    <Box id="projects" py={{ base: 12, md: 16, lg: 20 }} bg="transparent" position="relative" w="100%" maxW="100%" overflow="hidden">
+      <Container maxW="7xl" px={{ base: 4, md: 6 }}>
         <MotionBox
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -117,7 +117,8 @@ export default function ProjectsSection() {
 
         <Grid
           templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
-          gap={8}
+          gap={{ base: 6, md: 8 }}
+          w="100%"
         >
           <AnimatePresence>
             {projects.map((project, index) => (
@@ -210,24 +211,27 @@ export default function ProjectsSection() {
         </Grid>
       </Container>
 
-      <Modal isOpen={isOpen} onClose={onClose} size="4xl" isCentered>
+      <Modal isOpen={isOpen} onClose={onClose} size={{ base: 'full', sm: 'xl', md: '2xl', lg: '4xl' }} isCentered motionPreset="slideInBottom">
         <ModalOverlay bg="rgba(0, 0, 0, 0.9)" backdropFilter="blur(10px)" />
         <ModalContent 
           bg="#1a2142" 
-          border="2px solid #00d4ff" 
+          border={{ base: 'none', sm: '2px solid #00d4ff' }}
           boxShadow="0 0 50px rgba(0, 212, 255, 0.5)"
-          mx={{ base: 4, md: 0 }}
-          my={{ base: 4, md: 0 }}
+          mx={{ base: 0, sm: 4, md: 'auto' }}
+          my={{ base: 0, sm: 4, md: 'auto' }}
+          maxH={{ base: '100vh', sm: '90vh' }}
+          borderRadius={{ base: 0, sm: 'lg', md: 'xl' }}
+          overflow="hidden"
         >
           <ModalCloseButton 
             color="#00d4ff" 
             bg="rgba(0, 212, 255, 0.2)"
             border="2px solid #00d4ff"
             borderRadius="full"
-            size="lg"
-            top={4}
-            right={4}
-            fontSize="xl"
+            size={{ base: 'md', md: 'lg' }}
+            top={{ base: 2, sm: 3, md: 4 }}
+            right={{ base: 2, sm: 3, md: 4 }}
+            fontSize={{ base: 'lg', md: 'xl' }}
             zIndex={10}
             _hover={{ 
               bg: '#00d4ff',
@@ -238,14 +242,28 @@ export default function ProjectsSection() {
               bg: '#0ea5e9',
             }}
           />
-          <ModalBody p={0}>
+          <ModalBody p={0} maxH={{ base: '100vh', sm: '90vh' }} overflowY="auto" css={{
+            '&::-webkit-scrollbar': {
+              width: '8px',
+            },
+            '&::-webkit-scrollbar-track': {
+              background: 'rgba(0, 212, 255, 0.1)',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              background: '#00d4ff',
+              borderRadius: '4px',
+            },
+            '&::-webkit-scrollbar-thumb:hover': {
+              background: '#0ea5e9',
+            },
+          }}>
             {selectedProject && (
               <MotionBox
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 } as any}
               >
-                <Box position="relative" w="100%" h="400px">
+                <Box position="relative" w="100%" h={{ base: '250px', xs: '280px', sm: '320px', md: '380px', lg: '400px' }}>
                   <Image
                     src={selectedProject.image}
                     alt={selectedProject.title}
@@ -254,14 +272,14 @@ export default function ProjectsSection() {
                   />
                   <Box
                     position="absolute"
-                    top={4}
-                    right={4}
+                    top={{ base: 2, sm: 3, md: 4 }}
+                    left={{ base: 2, sm: 3, md: 4 }}
                   >
                     <Badge
                       colorScheme={selectedProject.category === 'Completed' ? 'green' : 'blue'}
-                      fontSize="md"
-                      px={4}
-                      py={2}
+                      fontSize={{ base: 'xs', sm: 'sm', md: 'md' }}
+                      px={{ base: 2, sm: 3, md: 4 }}
+                      py={{ base: 1, sm: 1.5, md: 2 }}
                       borderRadius="full"
                       bg={selectedProject.category === 'Completed' ? 'rgba(0, 255, 0, 0.3)' : 'rgba(0, 212, 255, 0.3)'}
                       color={selectedProject.category === 'Completed' ? '#00ff00' : '#00d4ff'}
@@ -272,25 +290,25 @@ export default function ProjectsSection() {
                     </Badge>
                   </Box>
                 </Box>
-                <VStack align="stretch" p={8} spacing={4} bg="#0f1535">
-                  <Heading as="h2" size="xl" color="white">
+                <VStack align="stretch" p={{ base: 4, xs: 5, sm: 6, md: 8 }} spacing={{ base: 3, sm: 4 }} bg="#0f1535">
+                  <Heading as="h2" size={{ base: 'lg', sm: 'xl' }} color="white" lineHeight="shorter">
                     {selectedProject.title}
                   </Heading>
-                  <Text color="gray.300" fontSize="lg" lineHeight="tall">
+                  <Text color="gray.300" fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} lineHeight="tall">
                     {selectedProject.description}
                   </Text>
-                  <Text color="#00d4ff" fontSize="md" lineHeight="tall">
+                  <Text color="#00d4ff" fontSize={{ base: 'xs', sm: 'sm', md: 'md' }} lineHeight="tall">
                     {selectedProject.details}
                   </Text>
-                  <HStack spacing={3} flexWrap="wrap" pt={4}>
+                  <HStack spacing={{ base: 2, sm: 3 }} flexWrap="wrap" pt={{ base: 2, sm: 4 }}>
                     {selectedProject.tags.map((tag, i) => (
                       <Badge
                         key={i}
                         bg="rgba(0, 212, 255, 0.2)"
                         color="#00d4ff"
-                        fontSize="md"
-                        px={4}
-                        py={2}
+                        fontSize={{ base: '2xs', xs: 'xs', sm: 'sm', md: 'md' }}
+                        px={{ base: 2, sm: 3, md: 4 }}
+                        py={{ base: 1, sm: 1.5, md: 2 }}
                         borderRadius="md"
                         border="1px solid #00d4ff"
                       >

@@ -57,7 +57,7 @@ const events = [
 
 export default function EventReportsSection() {
   return (
-    <Box id="events" py={{ base: 12, md: 16, lg: 20 }} bg="transparent">
+    <Box id="events" py={{ base: 12, md: 16, lg: 20 }} bg="transparent" w="100%" maxW="100%" overflow="hidden">
       <Container maxW="7xl" px={{ base: 4, md: 6 }}>
         <MotionBox
           initial={{ opacity: 0, y: 20 }}

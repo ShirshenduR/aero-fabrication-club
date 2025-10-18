@@ -34,32 +34,36 @@ export default function HeroSection() {
       overflow="hidden"
       display="flex"
       alignItems="center"
+      w="100%"
+      maxW="100%"
     >
       <Box
         position="absolute"
         top="20%"
         left="10%"
-        width="300px"
-        height="300px"
+        width={{ base: '200px', md: '300px' }}
+        height={{ base: '200px', md: '300px' }}
         borderRadius="50%"
         bgGradient="radial(circle, rgba(0,212,255,0.2), transparent)"
-        filter="blur(80px)"
+        filter={{ base: 'blur(60px)', md: 'blur(80px)' }}
         className="glow-animation"
+        pointerEvents="none"
       />
 
       <Box
         position="absolute"
         bottom="10%"
         right="15%"
-        width="400px"
-        height="400px"
+        width={{ base: '250px', md: '400px' }}
+        height={{ base: '250px', md: '400px' }}
         borderRadius="50%"
         bgGradient="radial(circle, rgba(13,71,161,0.3), transparent)"
-        filter="blur(90px)"
+        filter={{ base: 'blur(70px)', md: 'blur(90px)' }}
         className="glow-animation-alt"
+        pointerEvents="none"
       />
 
-      <Container maxW="container.xl" position="relative" zIndex={1} px={{ base: 4, sm: 5, md: 6, lg: 6, xl: 8 }} py={{ base: 4, md: 0 }}>
+      <Container maxW="container.xl" position="relative" zIndex={1} px={{ base: 4, sm: 5, md: 6, lg: 6, xl: 8 }} py={{ base: 4, md: 0 }} w="100%">
         <Flex
           direction={{ base: 'column', lg: 'row' }}
           align="center"
@@ -67,6 +71,8 @@ export default function HeroSection() {
           gap={{ base: 4, xs: 5, sm: 7, md: 9, lg: 8, xl: 12 }}
           pt={{ base: 20, sm: 22, md: 24, lg: 20, xl: 24 }}
           pb={{ base: 6, sm: 8, md: 10, lg: 8, xl: 0 }}
+          w="100%"
+          maxW="100%"
         >
           <Stack 
             spacing={{ base: 2.5, xs: 3, sm: 4, md: 5, lg: 5, xl: 6 }} 
@@ -181,18 +187,17 @@ export default function HeroSection() {
           <MotionBox
             flex={1}
             h={{ 
-              base: '260px',   // Compact for phones
-              xs: '280px',     // Slightly taller
-              sm: '340px',     // Medium phones
-              md: '400px',     // Tablets
-              lg: '480px',     // Laptops
-              xl: '540px',     // Desktop
-              '2xl': '600px'   // Large screens
+              base: '280px',   // Balanced for phones
+              xs: '300px',     // Slightly taller
+              sm: '360px',     // Medium phones
+              md: '420px',     // Tablets
+              lg: '460px',     // Laptops - Not too tall
+              xl: '500px',     // Desktop
+              '2xl': '560px'   // Large screens
             }}
             w="100%"
             maxW={{ base: '100%', sm: '95%', md: '90%', lg: '48%', xl: '50%' }}
-            minH={{ base: '260px', sm: '280px', md: '360px', lg: '440px' }}
-            aspectRatio={{ base: 'auto', md: '4/3', lg: 'auto' }}
+            minH={{ base: '280px', sm: '300px', md: '360px', lg: '420px' }}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.5 } as any}
