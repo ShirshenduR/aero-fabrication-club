@@ -15,38 +15,52 @@ function Controls({ onInteractionChange }: { onInteractionChange: (interacting: 
   const controlsRef = useRef<any>(null);
   const touchTimerRef = useRef<NodeJS.Timeout | null>(null);
   const isTouchHoldRef = useRef(false);
+  const [enableRotate, setEnableRotate] = useState(true);
 
   useEffect(() => {
     const controls = controlsRef.current;
     if (!controls) return;
 
-    const handleStart = () => {
-      // Only trigger interaction after a delay for touch devices
-      if (touchTimerRef.current) {
-        clearTimeout(touchTimerRef.current);
-      }
-      
-      touchTimerRef.current = setTimeout(() => {
-        isTouchHoldRef.current = true;
+    const handleTouchStart = (e: any) => {
+      // Detect if it's a touch event
+      if (e.touches || e.pointerType === 'touch') {
+        // Disable rotation immediately on touch
+        controls.enabled = false;
+        
+        // Set timer to enable rotation after hold delay
+        if (touchTimerRef.current) {
+          clearTimeout(touchTimerRef.current);
+        }
+        
+        touchTimerRef.current = setTimeout(() => {
+          controls.enabled = true;
+          isTouchHoldRef.current = true;
+          onInteractionChange(true);
+        }, 300); // 300ms delay for long press
+      } else {
+        // Mouse click - enable immediately
+        controls.enabled = true;
         onInteractionChange(true);
-      }, 200); // 200ms delay - enough to differentiate scroll from rotate
+      }
     };
     
     const handleEnd = () => {
       if (touchTimerRef.current) {
         clearTimeout(touchTimerRef.current);
       }
+      controls.enabled = true; // Re-enable for next interaction
       if (isTouchHoldRef.current) {
         onInteractionChange(false);
       }
       isTouchHoldRef.current = false;
     };
 
-    controls.addEventListener('start', handleStart);
+    const domElement = controls.domElement;
+    domElement.addEventListener('pointerdown', handleTouchStart);
     controls.addEventListener('end', handleEnd);
 
     return () => {
-      controls.removeEventListener('start', handleStart);
+      domElement.removeEventListener('pointerdown', handleTouchStart);
       controls.removeEventListener('end', handleEnd);
       if (touchTimerRef.current) {
         clearTimeout(touchTimerRef.current);
