@@ -39,10 +39,18 @@ function Controls({ onInteractionChange }: { onInteractionChange: (interacting: 
       autoRotateSpeed={1.5}
       minPolarAngle={Math.PI / 3}
       maxPolarAngle={Math.PI / 1.5}
-      rotateSpeed={0.8}
+      rotateSpeed={1.2}
       enableDamping={true}
       dampingFactor={0.1}
-      touches={{ ONE: 2, TWO: 0 }}
+      touches={{ 
+        ONE: 0,  // Single finger for rotation (TOUCH_ROTATE)
+        TWO: 0   // Disable two-finger gestures
+      }}
+      mouseButtons={{
+        LEFT: 0,   // Left mouse button for rotation
+        MIDDLE: undefined,
+        RIGHT: undefined
+      }}
       makeDefault
     />
   );
@@ -56,25 +64,25 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
 
   // Responsive scale for the 3D model - Balanced sizing for all screens
   const modelScale = useBreakpointValue({ 
-    base: 3.5,    // Small phones (< 480px) - Compact but visible
-    xs: 3.7,      // Phones (480px)
-    sm: 3.9,      // Large phones/small tablets (768px)
-    md: 4.2,      // Tablets (992px)
+    base: 4.0,    // Small phones (< 480px) - Larger for better visibility
+    xs: 4.2,      // Phones (480px)
+    sm: 4.4,      // Large phones/small tablets (768px)
+    md: 4.5,      // Tablets (992px)
     lg: 4.0,      // Desktop/Laptops (1280px) - Not too large
     xl: 4.5,      // Large desktop (1536px)
     '2xl': 5.0    // Extra large (1920px+)
-  }) || 3.8;
+  }) || 4.0;
 
   // Responsive camera position - Balanced distance for all screens
   const cameraDistance = useBreakpointValue({
-    base: 6.5,    // Good distance for phones
-    xs: 6.5,
-    sm: 6.5,
-    md: 6.5,
+    base: 6.2,    // Closer for phones
+    xs: 6.2,
+    sm: 6.3,
+    md: 6.4,
     lg: 6.5,      // Consistent for desktop
     xl: 6.2,
     '2xl': 6.0
-  }) || 6.5;
+  }) || 6.2;
 
   // Responsive FOV for better viewing on different screens
   const cameraFOV = useBreakpointValue({
@@ -84,7 +92,7 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
     lg: 58,       // Good for laptops
     xl: 56,
     '2xl': 55
-  }) || 60;
+  }) || 62;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -250,6 +258,7 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
           touchAction: isInteracting ? 'none' : 'pan-y',
           WebkitTouchCallout: 'none',
           WebkitUserSelect: 'none',
+          userSelect: 'none',
         }}
       >
         <Canvas 
@@ -271,7 +280,7 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
             preserveDrawingBuffer: true,
           }}
           dpr={typeof window !== 'undefined' && window.innerWidth < 768 ? [1, 1.5] : [1, 2]}
-          frameloop="demand"
+          frameloop="always"
         >
           <PerspectiveCamera 
             makeDefault 
