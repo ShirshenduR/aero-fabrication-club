@@ -182,6 +182,9 @@ export default function ContactSection() {
                         as={info.icon}
                         boxSize={6}
                         color={`${info.color}.500`}
+                        transform={info.title === 'Phone' ? 'rotate(90deg)' : undefined}
+                        transformOrigin="center"
+                        transition="transform 0.2s ease"
                       />
                     </Box>
                     <Box>
