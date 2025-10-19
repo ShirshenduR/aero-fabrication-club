@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import AOS from "aos";
-import "aos/dist/aos.css"; // Import AOS styles
+import "aos/dist/aos.css";
 
 export default function EventReportPage() {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
@@ -29,35 +29,35 @@ export default function EventReportPage() {
       image: "/googledocs.png",
       reportText:
         "The WRC 24 event showcased innovative designs and engineering solutions in the world of competitive drone racing. Teams from various universities participated, demonstrating their skills and creativity.",
-      date: "2024", // Updated date
+  date: "2024",
     },
     {
       title: "Sky Maneuvers 24",
       image: "/googledocs.png",
       reportText:
         "Sky Maneuvers 24 focused on advanced aerial maneuvers and techniques, providing participants with hands-on experience in drone piloting and control. The event included workshops and live demonstrations.",
-      date: "2024", // Updated date
+  date: "2024",
     },
     {
       title: "Aerothon '24",
       image: "/googledocs.png",
       reportText:
         "Aerothon '24 was a thrilling competition where teams designed and built drones to complete a series of challenging tasks. The event encouraged innovation and teamwork among participants.",
-      date: "2024", // Updated date
+  date: "2024",
     },
     {
       title: "Sky Maneuvers 25",
       image: "/googledocs.png",
       reportText:
         "Sky Maneuvers 25 aimed to push the boundaries of drone technology with a focus on agility and precision. Participants engaged in various challenges that tested their skills and creativity.",
-      date: "2025", // Updated date
+  date: "2025",
     },
   ];
 
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration
-      once: true, // Whether animation should happen only once
+  duration: 1000,
+  once: true,
     });
   }, []);
 
@@ -104,7 +104,7 @@ export default function EventReportPage() {
                   key={index}
                   className="bg-gradient-to-b from-blue-950/30 to-black border border-blue-900/20 rounded-lg p-6 card-hover"
                   data-aos="fade-up"
-                  data-aos-delay={`${index * 100}`} // Add delay for staggered effect
+                  data-aos-delay={`${index * 100}`}
                 >
                   <h3 className="text-xl font-bold mb-4">{event.title}</h3>
                   <p className="text-gray-400 mb-4">{event.reportText}</p>

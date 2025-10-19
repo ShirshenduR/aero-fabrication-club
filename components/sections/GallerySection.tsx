@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from 'react';
 import { Box, Container, Heading, Text, Grid, GridItem } from '@chakra-ui/react';
@@ -9,15 +9,88 @@ const MotionBox = motion(Box);
 const MotionGridItem = motion(GridItem);
 
 const galleryImages = [
-  { id: 1, src: '/images/gallery/gallery1.jpg', alt: 'Drone Project 1', description: 'Advanced quadcopter design', span: 2, rowSpan: 2, mobileSpan: 2, mobileRowSpan: 2 },
-  { id: 2, src: '/images/gallery/gallery2.jpg', alt: 'Drone Project 2', description: 'Flight testing session', span: 1, rowSpan: 1, mobileSpan: 1, mobileRowSpan: 1 },
-  { id: 3, src: '/images/gallery/gallery3.jpg', alt: 'Workshop 1', description: 'Electronics workshop', span: 1, rowSpan: 1, mobileSpan: 1, mobileRowSpan: 1 },
-  { id: 4, src: '/images/gallery/gallery4.jpg', alt: 'Team Photo 1', description: 'Team collaboration', span: 1, rowSpan: 2, mobileSpan: 2, mobileRowSpan: 1 },
-  { id: 5, src: '/images/hero/drone1.png', alt: 'Drone Project 3', description: 'Custom frame assembly', span: 2, rowSpan: 1, mobileSpan: 2, mobileRowSpan: 1 },
-  { id: 6, src: '/images/hero/drone2.jpg', alt: 'Event 1', description: 'Annual drone competition', span: 1, rowSpan: 1, mobileSpan: 2, mobileRowSpan: 1 },
+  // Big feature image on the left (spans 2 cols x 2 rows on md+)
+  {
+    id: 1,
+    src: '/images/gallery/gallery1.jpg',
+    alt: 'gallery 1',
+    mobileSpan: 2,
+    mobileRowSpan: 2,
+    gridColumnMd: '1 / span 2',
+    gridRowMd: '1 / span 2',
+  },
+  // Top right small images
+  {
+    id: 2,
+    src: '/images/gallery/gallery2.jpg',
+    alt: 'gallery 2',
+    mobileSpan: 1,
+    mobileRowSpan: 1,
+    gridColumnMd: '3 / span 1',
+    gridRowMd: '1 / span 1',
+  },
+  {
+    id: 3,
+    src: '/images/gallery/gallery3.jpg',
+    alt: 'gallery 3',
+    mobileSpan: 1,
+    mobileRowSpan: 1,
+    gridColumnMd: '4 / span 1',
+    gridRowMd: '1 / span 1',
+  },
+  // Tall image to the right spanning two rows (md+)
+  {
+    id: 4,
+    src: '/images/gallery/gallery4.jpg',
+    alt: 'gallery 4',
+    mobileSpan: 2,
+    mobileRowSpan: 1,
+    gridColumnMd: '3 / span 1',
+    gridRowMd: '2 / span 2',
+  },
+  // Wide image on the right column (md+)
+  {
+    id: 5,
+    src: '/images/gallery/gallery5.jpg',
+    alt: 'gallery 5',
+    mobileSpan: 2,
+    mobileRowSpan: 1,
+    gridColumnMd: '4 / span 1',
+    gridRowMd: '2 / span 1',
+  },
+  // Bottom left smalls under the big image
+  {
+    id: 6,
+    src: '/images/gallery/gallery6.jpg',
+    alt: 'gallery 6',
+    mobileSpan: 2,
+    mobileRowSpan: 1,
+    gridColumnMd: '1 / span 1',
+    gridRowMd: '3 / span 1',
+  },
+  {
+    id: 7,
+    src: '/images/gallery/gallery7.jpg',
+    alt: 'gallery 7',
+    mobileSpan: 2,
+    mobileRowSpan: 1,
+    gridColumnMd: '2 / span 1',
+    gridRowMd: '3 / span 1',
+  },
+  // Bottom right additional image for an 8th slot
+  {
+    id: 8,
+    src: '/images/gallery/gallery8.jpg',
+    alt: 'gallery 8',
+    mobileSpan: 2,
+    mobileRowSpan: 1,
+    gridColumnMd: '4 / span 1',
+    gridRowMd: '3 / span 1',
+  },
 ];
 
 export default function GallerySection() {
+  // Inline expand state and hover state
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
@@ -54,16 +127,20 @@ export default function GallerySection() {
           templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }}
           gap={{ base: 2, md: 4 }}
           autoRows={{ base: '150px', md: '200px' }}
+          gridAutoFlow="dense"
         >
           <AnimatePresence>
             {galleryImages.map((image, index) => {
               const isExpanded = expandedId === image.id;
-              
+              const anyExpanded = expandedId !== null;
               return (
                 <MotionGridItem
                   key={image.id}
-                  colSpan={isExpanded ? { base: 2, md: 4 } : { base: image.mobileSpan, md: image.span }}
-                  rowSpan={isExpanded ? { base: 2, md: 3 } : { base: image.mobileRowSpan, md: image.rowSpan }}
+                  // Mobile: toggle span on expand; MD+: expand to full width and taller rows
+                  colSpan={{ base: isExpanded ? 2 : image.mobileSpan }}
+                  rowSpan={{ base: isExpanded ? 2 : image.mobileRowSpan }}
+                  gridColumn={{ md: isExpanded ? '1 / -1' : anyExpanded ? 'auto' : image.gridColumnMd }}
+                  gridRow={{ md: isExpanded ? 'auto / span 3' : anyExpanded ? 'auto' : image.gridRowMd }}
                   layout
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -83,6 +160,7 @@ export default function GallerySection() {
                   border="2px solid"
                   borderColor={hoveredId === image.id || isExpanded ? '#00d4ff' : 'rgba(0,212,255,0.2)'}
                   boxShadow={hoveredId === image.id || isExpanded ? '0 0 20px rgba(0,212,255,0.5)' : 'none'}
+                  zIndex={isExpanded ? 1 : 0}
                   bg="#1a2142"
                 >
                   <Box
@@ -99,38 +177,6 @@ export default function GallerySection() {
                       style={{ objectFit: 'cover' }}
                     />
                   </Box>
-                  
-                  <MotionBox
-                    position="absolute"
-                    bottom={0}
-                    left={0}
-                    right={0}
-                    p={isExpanded ? { base: 4, md: 6 } : { base: 2, md: 4 }}
-                    bg="linear-gradient(to top, rgba(10,14,39,0.95), transparent)"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: (hoveredId === image.id || isExpanded) ? 1 : 0 }}
-                    transition={{ duration: 0.3 } as any}
-                  >
-                    <Text 
-                      color="white" 
-                      fontWeight="bold" 
-                      fontSize={isExpanded ? { base: 'lg', md: '2xl' } : { base: 'xs', md: 'md' }}
-                      transition="font-size 0.3s ease"
-                    >
-                      {image.description}
-                    </Text>
-                    {isExpanded && (
-                      <MotionBox
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 } as any}
-                      >
-                        <Text color="gray.300" mt={2} fontSize={{ base: 'xs', md: 'md' }}>
-                          Click to collapse
-                        </Text>
-                      </MotionBox>
-                    )}
-                  </MotionBox>
                 </MotionGridItem>
               );
             })}

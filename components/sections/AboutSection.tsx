@@ -19,10 +19,6 @@ import Image from 'next/image';
 const MotionBox = motion(Box);
 const MotionGrid = motion(Grid);
 
-/**
- * About Section Component
- * Features: Club introduction, vision, mission, and values
- */
 export default function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
@@ -78,7 +74,6 @@ export default function AboutSection() {
           </Text>
         </MotionBox>
 
-        {/* Main Content Grid */}
         <MotionGrid
           templateColumns={{ base: '1fr', lg: 'repeat(2, 1fr)' }}
           gap={{ base: 8, md: 10, lg: 12 }}
@@ -87,7 +82,6 @@ export default function AboutSection() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          {/* Image Section */}
           <MotionBox variants={itemVariants}>
             <Box
               position="relative"
@@ -117,7 +111,6 @@ export default function AboutSection() {
             </Box>
           </MotionBox>
 
-          {/* Text Content */}
           <MotionBox variants={itemVariants}>
             <Stack spacing={{ base: 4, md: 6 }}>
               <Heading as="h3" fontSize={{ base: 'xl', sm: '2xl', md: '3xl' }}>
@@ -143,7 +136,6 @@ export default function AboutSection() {
           </MotionBox>
         </MotionGrid>
 
-        {/* Vision and Mission Cards */}
         <MotionGrid
           templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }}
           gap={{ base: 6, md: 8 }}
@@ -151,7 +143,6 @@ export default function AboutSection() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          {/* Vision Card */}
           <MotionBox variants={itemVariants}>
             <Box
               bg={cardBg}
@@ -186,7 +177,6 @@ export default function AboutSection() {
             </Box>
           </MotionBox>
 
-          {/* Mission Card */}
           <MotionBox variants={itemVariants}>
             <Box
               bg={cardBg}
@@ -222,7 +212,6 @@ export default function AboutSection() {
             </Box>
           </MotionBox>
 
-          {/* Values Card */}
           <MotionBox variants={itemVariants}>
             <Box
               bg={cardBg}

@@ -15,12 +15,10 @@ export default function TeamPage() {
 
   return (
     <div className="pt-16">
-      {/* Hero Section */}
       <section className="py-20" data-aos="fade-up">
         <div className="container mx-auto px-4">
           <h1 className="section-heading">TEAM</h1>
 
-          {/* Leadership */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-20">
             <div
               className="bg-gradient-to-b from-blue-950/30 to-black border border-blue-900/20 rounded-lg overflow-hidden card-hover"
@@ -90,7 +88,7 @@ export default function TeamPage() {
                   src="/co-coordinator.jpeg"
                   alt="Shashaank Srivastava"
                   fill
-                  className="object-cover object-top" // Focus on the top part
+                  className="object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 p-6">
@@ -118,7 +116,7 @@ export default function TeamPage() {
                   src="/co-coordinator1.jpg"
                   alt="ROHIT TM"
                   fill
-                  className="object-cover object-top" // Focus on the top part
+                  className="object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 p-6">
@@ -138,7 +136,6 @@ export default function TeamPage() {
             </div>
           </div>
 
-          {/* Team Divisions */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 text-center">
             <div
               className="bg-gradient-to-b from-blue-950/30 to-black border border-blue-900/20 rounded-lg p-6 card-hover"

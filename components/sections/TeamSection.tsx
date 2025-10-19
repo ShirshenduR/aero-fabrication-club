@@ -20,10 +20,6 @@ import Image from 'next/image';
 const MotionBox = motion(Box);
 const MotionGrid = motion(Grid);
 
-/**
- * Team Section Component
- * Features: Circular profile cards with hover animations
- */
 export default function TeamSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
@@ -148,7 +144,6 @@ export default function TeamSection() {
           </Text>
         </MotionBox>
 
-        {/* Leadership Section */}
         <MotionGrid
           templateColumns={{
             base: '1fr',
@@ -177,7 +172,6 @@ export default function TeamSection() {
                   boxShadow: '0 20px 40px rgba(24, 144, 255, 0.3)',
                 }}
               >
-                {/* Circular Profile Image */}
                 <Box position="relative" mb={4}>
                   <Avatar
                     size="2xl"
@@ -210,7 +204,6 @@ export default function TeamSection() {
           ))}
         </MotionGrid>
 
-        {/* Team Divisions */}
         <Box>
           <Heading
             as="h3"

@@ -15,10 +15,6 @@ import {
 } from '@chakra-ui/react';
 import { FaInstagram, FaLinkedin, FaYoutube, FaEnvelope } from 'react-icons/fa';
 
-/**
- * Footer Component
- * Features: Copyright, social links, quick navigation, IITDMJ credit
- */
 export default function Footer() {
   const bgColor = useColorModeValue('gray.900', 'gray.900');
   const borderColor = useColorModeValue('gray.700', 'gray.700');
@@ -64,7 +60,6 @@ export default function Footer() {
           gap={{ base: 6, md: 8 }}
           w="100%"
         >
-          {/* Club Info */}
           <Stack spacing={4} maxW="400px" align={{ base: 'center', lg: 'start' }} textAlign={{ base: 'center', lg: 'left' }} w={{ base: 'full', lg: 'auto' }}>
             <Heading
               as="h3"
@@ -101,7 +96,6 @@ export default function Footer() {
             </HStack>
           </Stack>
 
-          {/* Quick Links */}
           <Stack spacing={4} align={{ base: 'center', lg: 'start' }} textAlign={{ base: 'center', lg: 'left' }}>
             <Heading as="h4" fontSize={{ base: 'md', md: 'lg' }} fontWeight="semibold" color="white" mb={2}>
               Quick Links
@@ -125,7 +119,6 @@ export default function Footer() {
             </Stack>
           </Stack>
 
-          {/* Contact Info */}
           <Stack spacing={4} align={{ base: 'center', lg: 'start' }} textAlign={{ base: 'center', lg: 'left' }}>
             <Heading as="h4" fontSize={{ base: 'md', md: 'lg' }} fontWeight="semibold" color="white" mb={2}>
               Contact Us
@@ -143,7 +136,6 @@ export default function Footer() {
 
         <Divider my={{ base: 6, md: 8 }} borderColor={borderColor} />
 
-        {/* Bottom Section */}
         <Flex
           direction={{ base: 'column', md: 'row' }}
           justify="space-between"

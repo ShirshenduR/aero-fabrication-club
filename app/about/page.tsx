@@ -5,19 +5,18 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import AOS from "aos";
-import "aos/dist/aos.css"; // Import AOS styles
+import "aos/dist/aos.css";
 
 export default function AboutPage() {
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration
-      once: true, // Whether animation should happen only once
+  duration: 1000,
+  once: true,
     });
   }, []);
 
   return (
     <div className="pt-16">
-      {/* Hero Section */}
       <section className="py-20" data-aos="fade-up">
         <div className="container mx-auto px-4">
           <h1 className="section-heading" data-aos="fade-up">
@@ -111,7 +110,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* History */}
       <section className="py-20" data-aos="fade-up">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-12 text-center">Our Journey</h2>
@@ -178,7 +176,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Join Us CTA */}
       <section
         className="py-20 bg-gradient-to-b from-blue-950/20 to-black"
         data-aos="fade-up"

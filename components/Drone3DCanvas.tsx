@@ -1,6 +1,6 @@
 'use client';
 
-import { Canvas, useThree } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { Suspense, useState, useEffect, useRef } from 'react';
 import { Box, Spinner, Text, useBreakpointValue } from '@chakra-ui/react';
@@ -13,52 +13,19 @@ interface Drone3DCanvasProps {
 
 function Controls({ onInteractionChange }: { onInteractionChange: (interacting: boolean) => void }) {
   const controlsRef = useRef<any>(null);
-  const touchTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const isTouchHoldRef = useRef(false);
-  const [enableRotate, setEnableRotate] = useState(true);
 
   useEffect(() => {
     const controls = controlsRef.current;
     if (!controls) return;
 
-    const handleTouchStart = (e: any) => {
-      // Detect if it's a touch event
-      if (e.touches || e.pointerType === 'touch') {
-        // Set timer to enable rotation after hold delay
-        if (touchTimerRef.current) {
-          clearTimeout(touchTimerRef.current);
-        }
-        
-        touchTimerRef.current = setTimeout(() => {
-          isTouchHoldRef.current = true;
-          onInteractionChange(true);
-        }, 300); // 300ms delay for long press
-      } else {
-        // Mouse click - enable immediately
-        onInteractionChange(true);
-      }
-    };
-    
-    const handleEnd = () => {
-      if (touchTimerRef.current) {
-        clearTimeout(touchTimerRef.current);
-      }
-      if (isTouchHoldRef.current) {
-        onInteractionChange(false);
-      }
-      isTouchHoldRef.current = false;
-    };
+    const handleStart = () => onInteractionChange(true);
+    const handleEnd = () => onInteractionChange(false);
 
-    const domElement = controls.domElement;
-    domElement.addEventListener('pointerdown', handleTouchStart);
+    controls.addEventListener('start', handleStart);
     controls.addEventListener('end', handleEnd);
-
     return () => {
-      domElement.removeEventListener('pointerdown', handleTouchStart);
+      controls.removeEventListener('start', handleStart);
       controls.removeEventListener('end', handleEnd);
-      if (touchTimerRef.current) {
-        clearTimeout(touchTimerRef.current);
-      }
     };
   }, [onInteractionChange]);
 
@@ -74,15 +41,10 @@ function Controls({ onInteractionChange }: { onInteractionChange: (interacting: 
       rotateSpeed={1.2}
       enableDamping={true}
       dampingFactor={0.1}
-      touches={{ 
-        ONE: 0,  // Single finger for rotation (TOUCH_ROTATE)
-        TWO: 0   // Disable two-finger gestures
-      }}
-      mouseButtons={{
-        LEFT: 0,   // Left mouse button for rotation
-        MIDDLE: undefined,
-        RIGHT: undefined
-      }}
+      // Allow one-finger rotate on touch devices
+      touches={{ ONE: 0 }}
+      // Limit mouse to left-button rotate
+      mouseButtons={{ LEFT: 0 }}
       makeDefault
     />
   );
@@ -93,8 +55,9 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
   const [isInteracting, setIsInteracting] = useState(false);
   const [showHint, setShowHint] = useState(true);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Responsive scale for the 3D model - Balanced sizing for all screens
+  // Responsive scale for the 3D model
   const modelScale = useBreakpointValue({ 
     base: 4.0,    // Small phones (< 480px) - Larger for better visibility
     xs: 4.2,      // Phones (480px)
@@ -105,7 +68,7 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
     '2xl': 5.0    // Extra large (1920px+)
   }) || 4.0;
 
-  // Responsive camera position - Balanced distance for all screens
+  // Responsive camera position
   const cameraDistance = useBreakpointValue({
     base: 6.2,    // Closer for phones
     xs: 6.2,
@@ -116,7 +79,7 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
     '2xl': 6.0
   }) || 6.2;
 
-  // Responsive FOV for better viewing on different screens
+  // Responsive FOV
   const cameraFOV = useBreakpointValue({
     base: 62,     // Balanced for phones
     sm: 60,
@@ -133,7 +96,6 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
     return () => clearTimeout(timer);
   }, []);
 
-  // Hide hint after some time if not loading
   useEffect(() => {
     if (!isLoading && !hasInteracted) {
       const hintTimer = setTimeout(() => {
@@ -143,7 +105,27 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
     }
   }, [isLoading, hasInteracted]);
 
-  // Handle when user starts interacting
+  useEffect(() => {
+    if (!containerRef.current || hasInteracted) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasInteracted) {
+            setShowHint(true);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(containerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [hasInteracted]);
+
   const handleInteractionChange = (interacting: boolean) => {
     setIsInteracting(interacting);
     if (interacting && !hasInteracted) {
@@ -154,6 +136,7 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
 
   return (
     <Box 
+      ref={containerRef}
       width={width} 
       height={height} 
       position="relative"
@@ -163,8 +146,8 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
       bg="transparent"
       minH={{ base: '280px', xs: '300px', sm: '360px' }}
       maxW="100%"
+      style={{ touchAction: 'none' }}
     >
-      {/* Responsive glowing background */}
       <Box
         position="absolute"
         top="50%"
@@ -190,7 +173,6 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
         }}
       />
       
-      {/* Loading Spinner */}
       {isLoading && (
         <Box
           position="absolute"
@@ -219,7 +201,6 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
         </Box>
       )}
       
-      {/* Interaction Hint - Compact for phones, prominent for larger screens */}
       {!isLoading && showHint && (
         <Box
           position="absolute"
@@ -279,21 +260,8 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
         </Box>
       )}
       
-      <Box
-        position="absolute"
-        top={0}
-        left={0}
-        right={0}
-        bottom={0}
-        zIndex={1}
-        style={{
-          pointerEvents: isInteracting ? 'auto' : 'none',
-          touchAction: isInteracting ? 'none' : 'auto',
-          WebkitTouchCallout: 'none',
-          WebkitUserSelect: 'none',
-          userSelect: 'none',
-        }}
-      >
+      <Box position="absolute" top={0} left={0} right={0} bottom={0} zIndex={1}
+        style={{ WebkitTouchCallout: 'none', WebkitUserSelect: 'none', userSelect: 'none' }}>
         <Canvas 
           style={{ 
             opacity: isLoading ? 0 : 1, 
@@ -305,7 +273,6 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
             position: 'absolute',
             top: 0,
             left: 0,
-            pointerEvents: isInteracting ? 'auto' : 'none',
           }}
           gl={{ 
             antialias: true, 
@@ -322,7 +289,6 @@ export default function Drone3DCanvas({ height = '100%', width = '100%' }: Drone
             fov={cameraFOV}
           />
           
-          {/* Enhanced Lighting */}
           <ambientLight intensity={0.8} />
           <directionalLight position={[5, 5, 5]} intensity={1.5} color="#00d4ff" />
           <directionalLight position={[-5, -5, -5]} intensity={0.8} color="#0ea5e9" />

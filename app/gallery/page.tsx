@@ -3,19 +3,18 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import AOS from "aos";
-import "aos/dist/aos.css"; // Import AOS styles
+import "aos/dist/aos.css";
 
 export default function GalleryPage() {
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration
-      once: true, // Whether animation should happen only once
+  duration: 1000,
+  once: true,
     });
   }, []);
 
   return (
     <div className="pt-16">
-      {/* Hero Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <h1 className="section-heading" data-aos="fade-up">
@@ -28,7 +27,7 @@ export default function GalleryPage() {
                 key={index}
                 className="relative h-80 rounded-lg overflow-hidden card-hover"
                 data-aos="fade-up"
-                data-aos-delay={`${index * 100}`} // Staggered effect
+                data-aos-delay={`${index * 100}`}
               >
                 <Image
                   src="/place.png"
@@ -42,7 +41,6 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Events Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <h2
@@ -80,7 +78,7 @@ export default function GalleryPage() {
                 key={index}
                 className="bg-gradient-to-b from-blue-950/30 to-black border border-blue-900/20 rounded-lg overflow-hidden card-hover"
                 data-aos="fade-up"
-                data-aos-delay={`${index * 100}`} // Staggered effect
+                data-aos-delay={`${index * 100}`}
               >
                 <div className="relative h-64">
                   <Image

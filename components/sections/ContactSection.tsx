@@ -17,10 +17,6 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaInstagram, FaLinkedin, FaYoutube
 
 const MotionBox = motion(Box);
 
-/**
- * Contact Section Component
- * Features: Contact form, contact information, social links
- */
 export default function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
@@ -91,7 +87,6 @@ export default function ContactSection() {
           w="100%"
           maxW="100%"
         >
-          {/* Google Maps Location */}
           <MotionBox
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -152,7 +147,6 @@ export default function ContactSection() {
             </Box>
           </MotionBox>
 
-          {/* Contact Information */}
           <MotionBox
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -208,7 +202,6 @@ export default function ContactSection() {
                 </Box>
               ))}
 
-              {/* Social Links */}
               <Box
                 bg={cardBg}
                 p={6}

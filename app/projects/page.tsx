@@ -6,19 +6,18 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import AOS from "aos";
-import "aos/dist/aos.css"; // Import AOS styles
+import "aos/dist/aos.css";
 
 export default function ProjectsPage() {
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration
-      once: true, // Whether animation should happen only once
+  duration: 1000,
+  once: true,
     });
   }, []);
 
   return (
     <div className="pt-16">
-      {/* Hero Section */}
       <section className="py-20" data-aos="fade-up">
         <div className="container mx-auto px-4">
           <h1 className="section-heading" data-aos="fade-up">
@@ -27,7 +26,6 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Completed Projects */}
       <section className="py-20" data-aos="fade-up">
         <div className="container mx-auto px-4">
           <h2
@@ -65,7 +63,7 @@ export default function ProjectsPage() {
                 key={project.id}
                 className="bg-gradient-to-b from-blue-950/30 to-black border border-blue-900/20 rounded-lg overflow-hidden card-hover"
                 data-aos="fade-up"
-                data-aos-delay={`${index * 100}`} // Staggered effect
+                data-aos-delay={`${index * 100}`}
               >
                 <div className="relative h-64">
                   <Image
@@ -85,7 +83,6 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Ongoing Projects */}
       <section
         className="py-20 bg-gradient-to-b from-blue-950/10 to-black"
         data-aos="fade-up"
@@ -181,7 +178,6 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Future Ideas */}
       <section className="py-20" data-aos="fade-up">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold mb-4 text-center">FUTURE IDEAS</h2>
@@ -241,7 +237,6 @@ export default function ProjectsPage() {
         </div>
       </section>
 
-      {/* Project Collaboration CTA */}
       <section
         className="py-20 bg-gradient-to-b from-blue-950/20 to-black"
         data-aos="fade-up"

@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
 import AOS from "aos";
-import "aos/dist/aos.css"; // Import AOS styles
+import "aos/dist/aos.css";
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,8 +14,8 @@ export default function ContactPage() {
 
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration
-      once: true, // Whether animation should happen only once
+  duration: 1000,
+  once: true,
     });
   }, []);
 
@@ -23,7 +23,6 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -32,7 +31,6 @@ export default function ContactPage() {
 
   return (
     <div className="pt-16">
-      {/* Hero Section */}
       <section className="py-20 bg-black" data-aos="fade-up">
         <div className="container mx-auto px-4">
           <h1 className="section-heading" data-aos="fade-up">
@@ -84,24 +82,7 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
-{/* 
-              <div className="pt-6" data-aos="fade-up">
-                <h3 className="font-bold text-lg mb-4">Club Hours</h3>
-                <div className="space-y-2">
-                  <div className="flex justify-between">
-                    <span className="text-gray-400">Monday - Friday</span>
-                    <span>10:00 AM - 6:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-400">Saturday</span>
-                    <span>11:00 AM - 3:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-400">Sunday</span>
-                    <span>Closed</span>
-                  </div>
-                </div>
-              </div> */}
+
             </div>
 
             <div
@@ -216,7 +197,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map Section */}
       <section
         className="py-20 bg-gradient-to-b from-blue-950/10 to-black"
         data-aos="fade-up"
@@ -244,7 +224,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Join Us Section */}
       <section className="py-20 bg-black" data-aos="fade-up">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Join Our Team</h2>

@@ -18,39 +18,21 @@ const MotionBox = motion(Box);
 
 const events = [
   {
-    title: 'Annual Drone Workshop',
-    year: '2024',
-    icon: FaUsers,
-    image: '/images/events/place.png',
-    description:
-      'Our flagship workshop series introducing students to drone design, assembly, and programming. Hands-on sessions covering basic to advanced concepts with expert mentors guiding participants through the complete drone building process.',
-    color: '#00d4ff',
-  },
-  {
-    title: 'AFC Tech Talks',
-    year: '2024',
-    icon: FaRocket,
-    image: '/images/events/place.png',
-    description:
-      'Monthly technical seminars featuring industry experts, alumni, and professors discussing latest trends in UAV technology, autonomous systems, and aerospace innovations. Open to all students passionate about drones.',
-    color: '#0ea5e9',
-  },
-  {
-    title: 'THRUST 3.0',
-    year: '2024',
-    icon: FaRocket,
-    image: '/images/events/place.png',
-    description:
-      '3rd Iteration of Exciting Competition of Water Rockets where teams design, build, and launch water-propelled rockets to achieve maximum altitude and accuracy. Encourages innovation in lightweight materials and aerodynamics.',
-    color: '#00d4ff',
-  },
-  {
-    title: 'Project Exhibition Day',
+    title: 'Thrust – Annual Water Rocket Event',
     year: '2025',
-    icon: FaCalendarAlt,
-    image: '/images/events/place.png',
+    icon: FaRocket,
+    image: '/images/events/Thrust.jpg',
     description:
-      'Annual showcase of innovative projects developed by club members throughout the year. Features live demonstrations, technical presentations, and interactive displays of autonomous drones, surveillance systems, and racing quadcopters.',
+      'Our annual flagship water rocket event specially curated for first-year students. Teams design, build, and launch water-propelled rockets competing for maximum altitude and accuracy.',
+    color: '#00d4ff',
+  },
+  {
+    title: 'Udaan – RC Glider Competition',
+    year: '2025',
+    icon: FaTrophy,
+    image: '/images/events/udaan.jpg',
+    description:
+      'A club-organized RC glider competition focused on fundamentals of aerodynamics and flight. Participants design, build, and test fly their gliders for glide time and control precision.',
     color: '#0ea5e9',
   },
 ];
@@ -103,7 +85,6 @@ export default function EventReportsSection() {
                 boxShadow: '0 0 20px rgba(0,212,255,0.5)',
               }}
             >
-              {/* Event Image */}
               <Box position="relative" h="250px" overflow="hidden">
                 <Image
                   src={event.image}
@@ -140,7 +121,6 @@ export default function EventReportsSection() {
                 </Box>
               </Box>
 
-              {/* Event Content */}
               <VStack align="start" spacing={4} p={6}>
                 <HStack spacing={3}>
                   <Icon

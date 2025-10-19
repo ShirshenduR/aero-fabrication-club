@@ -18,11 +18,14 @@ export default function InteractiveDotBackground() {
     const dotRadius = 1.5;
     const glowRadius = 120;
     let animationId: number;
+    let dpr = Math.max(window.devicePixelRatio || 1, 1);
 
     const generateDots = () => {
       dots = [];
-      for (let x = 0; x < canvas.width; x += spacing) {
-        for (let y = 0; y < canvas.height; y += spacing) {
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      for (let x = 0; x < width; x += spacing) {
+        for (let y = 0; y < height; y += spacing) {
           dots.push({
             x,
             y,
@@ -33,52 +36,64 @@ export default function InteractiveDotBackground() {
     };
 
     const setCanvasSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = Math.max(
-        document.body.scrollHeight,
-        document.documentElement.scrollHeight,
-        document.body.offsetHeight,
-        document.documentElement.offsetHeight,
-        document.documentElement.clientHeight
-      );
+      // Size the canvas to the viewport so it remains fixed while content scrolls
+    // Size canvas to viewport (fixed background)
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+
+      // Match CSS size for layout
+    // CSS size for layout
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+
+      // Match drawing buffer size with DPR scaling for crisp and accurate coordinates
+    // DPR-scaled drawing buffer
+      dpr = Math.max(window.devicePixelRatio || 1, 1);
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
       generateDots();
     };
 
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
     
-    const handleScroll = () => {
-      const newHeight = Math.max(
-        document.body.scrollHeight,
-        document.documentElement.scrollHeight,
-        document.body.offsetHeight,
-        document.documentElement.offsetHeight,
-        document.documentElement.clientHeight
-      );
-      if (canvas.height !== newHeight) {
-        setCanvasSize();
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll);
+    // No scroll resize needed for fixed, viewport-sized canvas
+    // No scroll resize needed
 
-    let mouseX = -1000;
-    let mouseY = -1000;
+  let pointerX = -1000; // CSS pixels, relative to canvas
+    let pointerY = -1000;
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY + window.scrollY;
+    const updatePointer = (clientX: number, clientY: number) => {
+      const rect = canvas.getBoundingClientRect();
+      // Convert viewport coords to canvas-local CSS pixels
+    // Convert viewport coords to canvas-local CSS pixels
+      pointerX = clientX - rect.left;
+      pointerY = clientY - rect.top;
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    const handlePointerMove = (e: PointerEvent) => {
+      updatePointer(e.clientX, e.clientY);
+    };
+
+    const handlePointerLeave = () => {
+      pointerX = -1000;
+      pointerY = -1000;
+    };
+
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    window.addEventListener('pointerleave', handlePointerLeave, { passive: true });
 
     const animate = () => {
+      // Clear using CSS pixel units thanks to the DPR transform
+    // Clear using CSS pixel units
       ctx.fillStyle = '#0a0e27';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 
       dots.forEach((dot) => {
-        const dx = mouseX - dot.x;
-        const dy = mouseY - dot.y;
+        const dx = pointerX - dot.x;
+        const dy = pointerY - dot.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         
         let alpha = dot.baseAlpha;
@@ -118,8 +133,8 @@ export default function InteractiveDotBackground() {
 
     return () => {
       window.removeEventListener('resize', setCanvasSize);
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointerleave', handlePointerLeave);
       cancelAnimationFrame(animationId);
     };
   }, []);
@@ -128,15 +143,18 @@ export default function InteractiveDotBackground() {
     <Box
       as="canvas"
       ref={canvasRef}
-      position="absolute"
+      position="fixed"
       top={0}
       left={0}
-      width="100%"
-      height="100%"
+      width="100vw"
+      height="100vh"
       zIndex={0}
       pointerEvents="none"
       style={{ 
         display: 'block',
+        // Ensure proper hit-testing calculations for pointer coords
+    // Ensure pointer coords correct
+        touchAction: 'none',
       }}
     />
   );

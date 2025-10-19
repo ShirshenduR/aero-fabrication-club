@@ -14,7 +14,6 @@ export default function DroneImage() {
       alignItems="center"
       justifyContent="center"
     >
-      {/* Animated background circle */}
       <Box
         position="absolute"
         width="300px"
@@ -25,7 +24,6 @@ export default function DroneImage() {
         zIndex={0}
       />
       
-      {/* Drone image with floating animation */}
       <Box
         position="relative"
         width={{ base: '250px', md: '350px', lg: '450px' }}
@@ -42,7 +40,6 @@ export default function DroneImage() {
         />
       </Box>
       
-      {/* Glowing effect */}
       <Box
         position="absolute"
         width="200px"

@@ -19,10 +19,6 @@ import Image from 'next/image';
 const MotionBox = motion(Box);
 const MotionFlex = motion(Flex);
 
-/**
- * Events & Achievements Section Component
- * Features: Timeline of major achievements and events
- */
 export default function AchievementsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
@@ -32,34 +28,34 @@ export default function AchievementsSection() {
   const achievements = [
     {
       id: 1,
-      title: 'Autonomous Drone-Aerothon 2022',
-      year: '2022',
-      award: '2nd Place - Design Phase',
-      image: '/images/achievements/Achievement1.jpg',
+      title: 'Aerothon 2024',
+      year: '2024',
+      award: 'Winner - Best Autonomous Drone',
+      image: '/images/achievements/Aerothon24.jpg',
       description:
-        'Secured 2nd place in the design phase of the prestigious Autonomous Drone-Aerothon22, competing against top engineering colleges nationwide. Our innovative autonomous navigation system impressed the judges.',
-      icon: FaMedal,
-      color: 'blue',
-    },
-    {
-      id: 2,
-      title: 'SAE Indian Southern Section DDC 2023',
-      year: '2023',
-      award: '1st Place - Best Aerodynamics (CFD)',
-      image: '/images/achievements/Achievement2.jpg',
-      description:
-        'Won 1st place in Best Aerodynamics Analysis (CFD) category at SAE Indian Southern Section DDC 23. Our advanced computational fluid dynamics simulation demonstrated superior airframe design optimization.',
+        'At Aerothon 2024, our autonomous platform won the Best Autonomous Drone award for robust perception, planning, and mission execution.',
       icon: FaTrophy,
       color: 'yellow',
     },
     {
-      id: 3,
-      title: 'IIT Roorkee Cognizance Tech Fest',
-      year: '2023',
-      award: '3rd Place - Flight Fury',
-      image: '/images/achievements/Achievement3.jpg',
+      id: 2,
+      title: 'Sky Maneuver - IIT Roorkee',
+      year: '2025',
+      award: '2nd Prize',
+      image: '/images/achievements/SkyManeuver25.jpg',
       description:
-        'Achieved 3rd place in Flight Fury competition at IIT Roorkee\'s prestigious Cognizance Tech Fest. Competed in challenging aerial maneuvers and precision flying tasks against 50+ teams.',
+        'Secured 2nd prize in Sky Maneuver at IIT Roorkee with consistent performance across precision flight and maneuvering rounds.',
+      icon: FaMedal,
+      color: 'blue',
+    },
+    {
+      id: 3,
+      title: 'Flight Fury - IIT Roorkee',
+      year: '2024',
+      award: 'Participated',
+      image: '/images/achievements/Flight%20Fury%20IIT%20Roorkee.jpg',
+      description:
+        'Participated in Flight Fury at IIT Roorkee, gaining valuable experience in competitive aerial challenges and race formats.',
       icon: FaAward,
       color: 'orange',
     },
@@ -67,28 +63,28 @@ export default function AchievementsSection() {
 
   const timeline = [
     {
-      year: '2021',
-      title: 'National Drone Competition Finalist',
+      year: '2024',
+      title: 'Aerothon 2024 – Best Autonomous Drone (Winner)',
       description:
-        'Qualified as top 10 finalists in the National Drone Design Competition among 100+ participating teams from premier engineering institutes across India.',
-    },
-    {
-      year: '2022',
-      title: 'Best Innovation Award - TechnoXian',
-      description:
-        'Received Best Innovation Award at TechnoXian World Robotics Championship for our swarm robotics implementation in autonomous drones.',
-    },
-    {
-      year: '2023',
-      title: 'Winners - Inter IIT Tech Meet',
-      description:
-        'Secured 1st position in the Drone Racing category at Inter IIT Tech Meet, showcasing superior piloting skills and technical prowess.',
+        'We won the Best Autonomous Drone award at Aerothon 2024 for robust perception, planning, and mission execution.',
     },
     {
       year: '2024',
-      title: 'National Level Recognition',
+      title: 'SIH 2024 – Hardware Edition (Winners)',
       description:
-        'Featured in National Innovation Council for our groundbreaking work in low-cost autonomous surveillance drones for agricultural applications.',
+        'Winners at Smart India Hackathon 2024 (Hardware Edition), delivering a practical, high-impact solution under tight constraints.',
+    },
+    {
+      year: '2024',
+      title: 'Flight Fury – IIT Roorkee (Participated)',
+      description:
+        'Participated in Flight Fury at IIT Roorkee, gaining valuable race-format experience and competitive exposure.',
+    },
+    {
+      year: '2025',
+      title: 'Sky Maneuver – IIT Roorkee (2nd Prize)',
+      description:
+        'Secured 2nd prize in Sky Maneuver at IIT Roorkee with consistent performance across precision flight and maneuver rounds.',
     },
   ];  const containerVariants = {
     hidden: { opacity: 0 },
@@ -136,7 +132,6 @@ export default function AchievementsSection() {
           </Text>
         </MotionBox>
 
-        {/* Major Achievements Grid */}
         <Grid
           templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }}
           gap={8}
@@ -201,7 +196,6 @@ export default function AchievementsSection() {
           ))}
         </Grid>
 
-        {/* Timeline Section */}
         <MotionBox
           variants={containerVariants}
           initial="hidden"
@@ -217,7 +211,6 @@ export default function AchievementsSection() {
           </Heading>
 
           <Box position="relative">
-            {/* Timeline line */}
             <Box
               position="absolute"
               left={{ base: '20px', md: '50%' }}
@@ -237,10 +230,8 @@ export default function AchievementsSection() {
                 mb={12}
                 position="relative"
               >
-                {/* Spacer for desktop */}
                 <Box flex={1} display={{ base: 'none', md: 'block' }} />
 
-                {/* Timeline dot */}
                 <Flex
                   position="absolute"
                   left={{ base: '12px', md: '50%' }}
@@ -260,7 +251,6 @@ export default function AchievementsSection() {
                   {event.year}
                 </Flex>
 
-                {/* Content card */}
                 <Box
                   flex={1}
                   ml={{ base: '90px', md: index % 2 === 0 ? '80px' : '0' }}
