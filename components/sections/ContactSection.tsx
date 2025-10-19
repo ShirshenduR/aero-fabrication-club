@@ -51,9 +51,9 @@ export default function ContactSection() {
   ];
 
   const socialLinks = [
-    { icon: FaInstagram, url: '#', label: 'Instagram', color: 'pink' },
-    { icon: FaLinkedin, url: '#', label: 'LinkedIn', color: 'blue' },
-    { icon: FaYoutube, url: '#', label: 'YouTube', color: 'red' },
+    { icon: FaInstagram, url: 'https://www.instagram.com/afc_iiitdmj/', label: 'Instagram', color: 'pink' },
+    { icon: FaLinkedin, url: 'https://in.linkedin.com/company/aero-fabrication-club-iiitdmj', label: 'LinkedIn', color: 'blue' },
+    { icon: FaYoutube, url: 'https://www.youtube.com/channel/UCYnz9APdl9-aM4S9pxrRsqA', label: 'YouTube', color: 'red' },
   ];
 
   return (

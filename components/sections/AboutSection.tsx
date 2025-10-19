@@ -10,6 +10,7 @@ import {
   Stack,
   useColorModeValue,
   Icon,
+  AspectRatio,
 } from '@chakra-ui/react';
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
@@ -84,8 +85,6 @@ export default function AboutSection() {
         >
           <MotionBox variants={itemVariants}>
             <Box
-              position="relative"
-              h={{ base: '250px', sm: '300px', md: '350px', lg: '400px' }}
               borderRadius={{ base: 'xl', md: '2xl' }}
               overflow="hidden"
               boxShadow="2xl"
@@ -93,21 +92,27 @@ export default function AboutSection() {
                 transform: 'scale(1.02)',
                 transition: 'transform 0.3s ease',
               }}
+              bg="#000"
             >
-              <Image
-                src="/images/about/about.jpg"
-                alt="Aero Fabrication Club Team"
-                fill
-                style={{ objectFit: 'cover' }}
-              />
-              <Box
-                position="absolute"
-                top={0}
-                left={0}
-                right={0}
-                bottom={0}
-                bgGradient="linear(to-t, blackAlpha.700, transparent)"
-              />
+              <AspectRatio ratio={16/9}>
+                <Box position="relative" w="100%" h="100%">
+                  <Image
+                    src="/images/about/about.jpg"
+                    alt="Aero Fabrication Club Team"
+                    fill
+                    style={{ objectFit: 'contain' }}
+                    sizes="(min-width: 1024px) 800px, 100vw"
+                  />
+                  <Box
+                    position="absolute"
+                    top={0}
+                    left={0}
+                    right={0}
+                    bottom={0}
+                    bgGradient="linear(to-t, blackAlpha.700, transparent)"
+                  />
+                </Box>
+              </AspectRatio>
             </Box>
           </MotionBox>
 

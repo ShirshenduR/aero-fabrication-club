@@ -20,9 +20,9 @@ export default function Footer() {
   const borderColor = useColorModeValue('gray.700', 'gray.700');
 
   const socialLinks = [
-    { icon: FaInstagram, url: '#', label: 'Instagram' },
-    { icon: FaLinkedin, url: '#', label: 'LinkedIn' },
-    { icon: FaYoutube, url: '#', label: 'YouTube' },
+    { icon: FaInstagram, url: 'https://www.instagram.com/afc_iiitdmj/', label: 'Instagram' },
+    { icon: FaLinkedin, url: 'https://in.linkedin.com/company/aero-fabrication-club-iiitdmj', label: 'LinkedIn' },
+    { icon: FaYoutube, url: 'https://www.youtube.com/channel/UCYnz9APdl9-aM4S9pxrRsqA', label: 'YouTube' },
     { icon: FaEnvelope, url: 'mailto:afc@iiitdmj.ac.in', label: 'Email' },
   ];
 
