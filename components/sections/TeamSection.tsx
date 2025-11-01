@@ -11,10 +11,14 @@ import {
   VStack,
   Icon,
   Flex,
+  Collapse,
+  Link,
+  HStack,
+  Stack,
 } from '@chakra-ui/react';
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { FaUsers, FaChartLine, FaDollarSign, FaCalendarAlt, FaHashtag } from 'react-icons/fa';
+import { useRef, useState } from 'react';
+import { FaUsers, FaChartLine, FaDollarSign, FaCalendarAlt, FaHashtag, FaLinkedin } from 'react-icons/fa';
 import Image from 'next/image';
 
 const MotionBox = motion(Box);
@@ -72,7 +76,7 @@ export default function TeamSection() {
       name: 'Management Team',
       icon: FaChartLine,
       description:
-        "Handles promotion, outreach, and communication of the club's activities and achievements.",
+        "Handles promotion, outreach, and communication of the club's activities .",
       color: 'purple',
     },
     {
@@ -97,6 +101,31 @@ export default function TeamSection() {
       color: 'pink',
     },
   ];
+
+  // Sample members data for each division. Replace with real data as needed.
+  const membersByDivision: Record<string, Array<{ name: string; image?: string; linkedin?: string }>> = {
+    'Technical Team': [
+      { name: 'Aman Kumar', image: '/images/team/tech1.jpg', linkedin: 'https://www.linkedin.com/in/aman-kumar' },
+      { name: 'Priya Singh', image: '/images/team/tech2.jpg', linkedin: 'https://www.linkedin.com/in/priya-singh' },
+    ],
+    'Management Team': [
+      { name: 'Rahul Verma', image: '/images/team/mgmt1.jpg', linkedin: 'https://www.linkedin.com/in/rahul-verma' },
+    ],
+    'Finance Team': [
+      { name: 'Shirshendu R Tripathi', image: '/images/team/Shirsh.jpeg', linkedin: 'https://www.linkedin.com/in/shirshendur'
+
+       },
+       { name: 'Apurva Verma', image: '/images/team/Apurva.jpeg', linkedin: 'https://www.linkedin.com/in/apurva-verma-04aab1318/' }
+    ],
+    'Events Team': [
+      { name: 'Karan Joshi', image: '/images/team/events1.jpg', linkedin: 'https://www.linkedin.com/in/karan-joshi' },
+    ],
+    'Social Media Team': [
+      { name: 'Anjali Rao', image: '/images/team/social1.jpg', linkedin: 'https://www.linkedin.com/in/anjali-rao' },
+    ],
+  };
+
+  const [openDivision, setOpenDivision] = useState<number | null>(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -228,46 +257,76 @@ export default function TeamSection() {
           >
             {divisions.map((division, index) => (
               <MotionBox key={index} variants={itemVariants}>
-                <VStack
-                  bg="blackAlpha.400"
-                  borderRadius="xl"
-                  p={6}
-                  h="100%"
-                  spacing={4}
-                  borderWidth="1px"
-                  borderColor="whiteAlpha.300"
-                  transition="all 0.3s ease"
-                  _hover={{
-                    transform: 'translateY(-5px)',
-                    bg: 'blackAlpha.600',
-                    borderColor: `${division.color}.500`,
-                  }}
-                >
-                  <Flex
-                    w="60px"
-                    h="60px"
-                    bg={`${division.color}.500`}
-                    borderRadius="full"
-                    align="center"
-                    justify="center"
-                    boxShadow="md"
+                <Box>
+                  <VStack
+                    bg="blackAlpha.400"
+                    borderRadius="xl"
+                    p={6}
+                    h="100%"
+                    spacing={4}
+                    borderWidth="1px"
+                    borderColor="whiteAlpha.300"
+                    transition="all 0.3s ease"
+                    _hover={{
+                      transform: 'translateY(-5px)',
+                      bg: 'blackAlpha.600',
+                      borderColor: `${division.color}.500`,
+                    }}
+                    role="button"
+                    cursor="pointer"
+                    onClick={() => setOpenDivision(openDivision === index ? null : index)}
+                    aria-expanded={openDivision === index}
                   >
-                    <Icon as={division.icon} boxSize={6} color="white" />
-                  </Flex>
+                    <Flex
+                      w="60px"
+                      h="60px"
+                      bg={`${division.color}.500`}
+                      borderRadius="full"
+                      align="center"
+                      justify="center"
+                      boxShadow="md"
+                    >
+                      <Icon as={division.icon} boxSize={6} color="white" />
+                    </Flex>
 
-                  <Heading as="h4" fontSize="lg" color="white" textAlign="center">
-                    {division.name}
-                  </Heading>
+                    <Heading as="h4" fontSize="lg" color="white" textAlign="center">
+                      {division.name}
+                    </Heading>
 
-                  <Text
-                    color="gray.400"
-                    fontSize="sm"
-                    textAlign="center"
-                    flex={1}
-                  >
-                    {division.description}
-                  </Text>
-                </VStack>
+                    <Text
+                      color="gray.400"
+                      fontSize="sm"
+                      textAlign="center"
+                      flex={1}
+                    >
+                      {division.description}
+                    </Text>
+                  </VStack>
+                  <Collapse in={openDivision === index} animateOpacity>
+                    <Box mt={4} bg="blackAlpha.300" p={4} borderRadius="md">
+                      <Stack spacing={6} align="center">
+                        {(membersByDivision[division.name] || []).map((m, mi) => (
+                          <VStack key={mi} spacing={2} align="center" w="100%">
+                            <Avatar size="xl" src={m.image} name={m.name} mb={2} />
+                            <Text color="white" fontWeight="bold" fontSize="lg" textAlign="center">
+                              {m.name}
+                            </Text>
+                            <Link href={m.linkedin} isExternal color="blue.300" aria-label={`LinkedIn profile of ${m.name}`}>
+                              <HStack justify="center">
+                                <FaLinkedin />
+                                <Text fontSize="sm">LinkedIn</Text>
+                              </HStack>
+                            </Link>
+                          </VStack>
+                        ))}
+
+                        {!(membersByDivision[division.name] || []).length && (
+                          <Text color="gray.400">No members listed yet</Text>
+                        )}
+                      </Stack>
+                    </Box>
+                  </Collapse>
+                </Box>
               </MotionBox>
             ))}
           </MotionGrid>
