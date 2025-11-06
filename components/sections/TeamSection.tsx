@@ -211,24 +211,28 @@ export default function TeamSection() {
         </VStack>
 
         {/* Mobile Team Members Section - Appears below each card on mobile only */}
-        <Box display={{ base: 'block', md: 'none' }}>
+        <Box display={{ base: 'block', md: 'none' }} position="relative" zIndex={1} w="100%">
           <AnimatePresence>
             {isSelected && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
+              <Box
+                as={motion.div}
+                initial={{ opacity: 0, maxHeight: 0 }}
+                animate={{ opacity: 1, maxHeight: '2000px' }}
+                exit={{ opacity: 0, maxHeight: 0 }}
                 transition={{ duration: 0.3, ease: 'easeInOut' }}
-                style={{ overflow: 'hidden', marginTop: '16px' }}
+                overflow="hidden"
+                mt={4}
               >
                 <Box
-                  bg="blackAlpha.500"
+                  bg="blackAlpha.600"
                   borderRadius="xl"
                   p={4}
                   borderWidth="2px"
                   borderColor={`${division.color}.500`}
+                  boxShadow="lg"
+                  w="100%"
                 >
-                  <VStack spacing={4} align="stretch">
+                  <VStack spacing={4} align="stretch" w="100%">
                     <Text 
                       color="gray.400" 
                       fontSize="xs"
@@ -238,29 +242,26 @@ export default function TeamSection() {
                       {division.members.length} Members
                     </Text>
 
-                    <VStack spacing={3} w="100%">
+                    <VStack spacing={3} w="100%" align="stretch">
                       {division.members.map((member: any, idx: number) => (
-                        <motion.div
+                        <Box
                           key={idx}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: idx * 0.1, duration: 0.3 }}
-                          style={{ width: '100%' }}
+                          w="100%"
                         >
                           <Flex
-                            bg="blackAlpha.700"
+                            bg="blackAlpha.800"
                             borderRadius="lg"
-                            p={3}
+                            p={4}
                             align="center"
                             gap={3}
                             borderWidth="1px"
                             borderColor={`${division.color}.500`}
                             transition="all 0.2s ease"
-                            minH="72px"
+                            minH="80px"
                             w="100%"
                             _hover={{
-                              transform: 'translateX(5px)',
                               borderColor: `${division.color}.400`,
+                              bg: "blackAlpha.700",
                             }}
                           >
                             <Avatar
@@ -271,12 +272,14 @@ export default function TeamSection() {
                               borderColor={`${division.color}.500`}
                               flexShrink={0}
                             />
-                            <VStack spacing={0} align="start" flex={1} minW={0}>
+                            <VStack spacing={1} align="start" flex={1} minW={0}>
                               <Text
                                 fontSize="sm"
                                 fontWeight="bold"
                                 color="white"
-                                noOfLines={1}
+                                noOfLines={2}
+                                wordBreak="break-word"
+                                w="100%"
                               >
                                 {member.name}
                               </Text>
@@ -284,17 +287,18 @@ export default function TeamSection() {
                                 fontSize="xs"
                                 color={`${division.color}.300`}
                                 noOfLines={1}
+                                w="100%"
                               >
                                 {member.role}
                               </Text>
                             </VStack>
                           </Flex>
-                        </motion.div>
+                        </Box>
                       ))}
                     </VStack>
                   </VStack>
                 </Box>
-              </motion.div>
+              </Box>
             )}
           </AnimatePresence>
         </Box>
@@ -398,9 +402,28 @@ export default function TeamSection() {
             Team Divisions
           </Heading>
 
+          {/* Mobile: Stack layout to prevent overlap */}
+          <VStack 
+            display={{ base: 'flex', sm: 'none' }}
+            spacing={6}
+            w="100%"
+            align="stretch"
+          >
+            {divisions.map((division, index) => (
+              <DivisionCard 
+                key={index} 
+                division={division} 
+                index={index}
+                isSelected={selectedDivision === index}
+                onClick={() => setSelectedDivision(selectedDivision === index ? null : index)}
+              />
+            ))}
+          </VStack>
+
+          {/* Tablet and Desktop: Grid layout */}
           <Grid
+            display={{ base: 'none', sm: 'grid' }}
             templateColumns={{
-              base: '1fr',
               sm: 'repeat(2, 1fr)',
               lg: 'repeat(4, 1fr)',
             }}
