@@ -26,19 +26,8 @@ export default function AchievementsSection() {
   const bgColor = '#0a0e27';
 
   const achievements = [
-    {
+      {
       id: 1,
-      title: 'Aerothon 2024',
-      year: '2024',
-      award: 'Winner - Best Autonomous Drone',
-      image: '/images/achievements/Aerothon24.jpg',
-      description:
-        'At Aerothon 2024, our autonomous platform won the Best Autonomous Drone award for robust perception, planning, and mission execution.',
-      icon: FaTrophy,
-      color: 'yellow',
-    },
-    {
-      id: 2,
       title: 'Sky Maneuver - IIT Roorkee',
       year: '2025',
       award: '2nd Prize',
@@ -49,7 +38,30 @@ export default function AchievementsSection() {
       color: 'blue',
     },
     {
+      id: 2,
+      title: 'Smart India Hackathon 2024',
+      year: '2024',
+      award: 'Winners - Hardware Edition',
+      image: '/images/achievements/SIH24.jpg',
+      description:
+        'We emerged as winners in the Hardware Edition of Smart India Hackathon 2024, delivering a practical, high-impact solution under tight constraints.',
+      icon: FaAward,
+      color: 'yellow',
+    },
+    {
       id: 3,
+      title: 'Aerothon 2024',
+      year: '2024',
+      award: 'Winner - Best Autonomous Drone',
+      image: '/images/achievements/Aerothon24.jpg',
+      description:
+        'At Aerothon 2024, our autonomous platform won the Best Autonomous Drone award for robust perception, planning, and mission execution.',
+      icon: FaTrophy,
+      color: 'yellow',
+    },
+
+    {
+      id: 4,
       title: 'Flight Fury - IIT Roorkee',
       year: '2024',
       award: 'Participated',
@@ -86,6 +98,7 @@ export default function AchievementsSection() {
       description:
         'Secured 2nd prize in Sky Maneuver at IIT Roorkee with consistent performance across precision flight and maneuver rounds.',
     },
+    
   ];  const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
