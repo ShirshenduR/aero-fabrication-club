@@ -62,7 +62,7 @@ const projects = [
   {
     id: 5,
     title: 'Hybrid VTOL Drone',
-    category: 'Ongoing',
+    category: 'Completed',
     image: '/images/projects/ongoingProject2.jpg',
     description: 'An innovative hybrid drone combining vertical takeoff and landing capabilities with efficient fixed-wing flight for extended range missions.',
     tags: ['VTOL', 'Hybrid', 'Long Endurance'],

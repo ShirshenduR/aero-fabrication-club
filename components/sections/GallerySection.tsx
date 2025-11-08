@@ -162,6 +162,7 @@ export default function GallerySection() {
                   boxShadow={hoveredId === image.id || isExpanded ? '0 0 20px rgba(0,212,255,0.5)' : 'none'}
                   zIndex={isExpanded ? 1 : 0}
                   bg="#1a2142"
+                  minH={isExpanded ? { base: '300px', md: '500px' } : 'auto'}
                 >
                   <Box
                     position="relative"
@@ -174,7 +175,9 @@ export default function GallerySection() {
                       src={image.src}
                       alt={image.alt}
                       fill
-                      style={{ objectFit: 'cover' }}
+                      style={{ 
+                        objectFit: isExpanded ? 'contain' : 'cover'
+                      }}
                     />
                   </Box>
                 </MotionGridItem>

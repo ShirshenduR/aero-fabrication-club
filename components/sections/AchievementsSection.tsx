@@ -26,7 +26,7 @@ export default function AchievementsSection() {
   const bgColor = '#0a0e27';
 
   const achievements = [
-      {
+    {
       id: 1,
       title: 'Sky Maneuver - IIT Roorkee',
       year: '2025',
@@ -59,46 +59,112 @@ export default function AchievementsSection() {
       icon: FaTrophy,
       color: 'yellow',
     },
-
     {
       id: 4,
-      title: 'Flight Fury - IIT Roorkee',
+      title: 'IIT Kanpur Techkriti - Autodesk Design Challenge',
       year: '2024',
-      award: 'Participated',
-      image: '/images/achievements/Flight%20Fury%20IIT%20Roorkee.jpg',
+      award: 'Winner',
+      image: '/images/achievements/Techkirti.jpg',
       description:
-        'Participated in Flight Fury at IIT Roorkee, gaining valuable experience in competitive aerial challenges and race formats.',
-      icon: FaAward,
+        'Won the Autodesk Design Challenge at IIT Kanpur Techkriti, demonstrating superior design and engineering capabilities.',
+      icon: FaTrophy,
+      color: 'yellow',
+    },
+    {
+      id: 5,
+      title: 'Sky Maneuver - IIT Roorkee',
+      year: '2024',
+      award: 'AIR 2',
+      image: '/images/achievements/SkyManeuver24.png',
+      description:
+        'Secured All India Rank 2 in Sky Maneuver event at IIT Roorkee 2024, demonstrating exceptional drone maneuvering capabilities.',
+      icon: FaMedal,
+      color: 'blue',
+    },
+    {
+      id: 6,
+      title: 'IIT Bombay Boeing Aeromodelling',
+      year: '2023',
+      award: '3 Teams in Top 20',
+      image: '/images/achievements/Boeingiitbombay.jpg',
+      description:
+        'Exceptional performance with 3 teams qualifying in the top 20 at IIT Bombay Boeing Aeromodelling Competition 2023.',
+      icon: FaMedal,
+      color: 'blue',
+    },
+    {
+      id: 7,
+      title: 'SAE DDC 2023',
+      year: '2023',
+      award: 'AIR 1 - Best Aerodynamic Analysis (CFD)',
+      image: '/images/achievements/SAEDDC23.jpg',
+      description:
+        'Secured All India Rank 1 for Best Aerodynamic Analysis using Computational Fluid Dynamics at SAE Drone Design Challenge 2023.',
+      icon: FaTrophy,
+      color: 'yellow',
+    },
+    {
+      id: 8,
+      title: 'Flight Fury - IIT Roorkee Techfest',
+      year: '2023',
+      award: 'AIR 3',
+      image: '/images/achievements/Flightfury iit roorkee 23.jpg',
+      description:
+        'Achieved All India Rank 3 in Flight Fury 2023 at IIT Roorkee Techfest, showcasing exceptional drone racing skills.',
+      icon: FaTrophy,
       color: 'orange',
     },
   ];
 
   const timeline = [
     {
+      year: '2023',
+      title: 'Flight Fury – IIT Roorkee Techfest (AIR 3)',
+      description:
+        'Achieved All India Rank 3 in Flight Fury 2023 at IIT Roorkee Techfest, showcasing exceptional drone racing skills and competitive performance.',
+    },
+    {
+      year: '2023',
+      title: 'SAE DDC 2023 – Best Aerodynamic Analysis (AIR 1)',
+      description:
+        'Secured All India Rank 1 for Best Aerodynamic Analysis using Computational Fluid Dynamics at SAE Drone Design Challenge 2023.',
+    },
+    {
+      year: '2023',
+      title: 'IIT Bombay Boeing Aeromodelling Competition (3 Teams in Top 20)',
+      description:
+        'Demonstrated exceptional capability with 3 teams qualifying in the top 20 at IIT Bombay Boeing Aeromodelling Competition 2023.',
+    },
+    {
+      year: '2024',
+      title: 'Sky Maneuver – IIT Roorkee (AIR 2)',
+      description:
+        'Secured All India Rank 2 in Sky Maneuver event at IIT Roorkee 2024, demonstrating exceptional precision flight and advanced maneuvering capabilities.',
+    },
+    {
+      year: '2024',
+      title: 'IIT Kanpur Techkriti – Autodesk Design Challenge (Winner)',
+      description:
+        'Won the Autodesk Design Challenge at IIT Kanpur Techkriti, demonstrating superior design and engineering capabilities with innovative solutions.',
+    },
+    {
       year: '2024',
       title: 'Aerothon 2024 – Best Autonomous Drone (Winner)',
       description:
-        'We won the Best Autonomous Drone award at Aerothon 2024 for robust perception, planning, and mission execution.',
+        'Won the Best Autonomous Drone award at Aerothon 2024 for robust perception, planning, and mission execution with cutting-edge autonomous systems.',
     },
     {
       year: '2024',
       title: 'SIH 2024 – Hardware Edition (Winners)',
       description:
-        'Winners at Smart India Hackathon 2024 (Hardware Edition), delivering a practical, high-impact solution under tight constraints.',
-    },
-    {
-      year: '2024',
-      title: 'Flight Fury – IIT Roorkee (Participated)',
-      description:
-        'Participated in Flight Fury at IIT Roorkee, gaining valuable race-format experience and competitive exposure.',
+        'Winners at Smart India Hackathon 2024 (Hardware Edition), delivering a practical, high-impact solution under tight constraints and time pressure.',
     },
     {
       year: '2025',
       title: 'Sky Maneuver – IIT Roorkee (2nd Prize)',
       description:
-        'Secured 2nd prize in Sky Maneuver at IIT Roorkee with consistent performance across precision flight and maneuver rounds.',
+        'Secured 2nd prize in Sky Maneuver at IIT Roorkee with consistent performance across precision flight and advanced maneuver rounds.',
     },
-    
   ];  const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

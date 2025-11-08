@@ -109,6 +109,7 @@ export default function TeamSection() {
       members: [
         { name: 'Laxman', role: 'Resources Team', image: '/images/team/Laxman.jpg' },
         { name: 'Sharad Gupta', role: 'Resource Team', image: '/images/team/Sharad.jpg' },
+        { name: 'Shrreyansh Anil Singh', role: 'Resource Team', image: '/images/team/Shrreyansh.jpg' },
         { name: 'Harsh Giri', role: 'Resource Team', image: '/images/team/Harsh.jpg' },
         { name: 'Abhay', role: 'Resource Team', image: '/images/team/Abhay.jpg' },
       ],
