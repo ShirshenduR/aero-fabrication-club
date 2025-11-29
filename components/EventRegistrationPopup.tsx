@@ -27,7 +27,7 @@ export default function EventRegistrationPopup() {
   const [hasShown, setHasShown] = useState(false);
 
   // Google Form URL - you'll replace this with your actual form link
-  const REGISTRATION_FORM_URL = 'https://forms.google.com/your-form-link-here';
+  const REGISTRATION_FORM_URL = 'https://forms.gle/gGYaYJnSmMh5zcxp8';
 
   useEffect(() => {
     // Show popup after 2 seconds on first visit
