@@ -122,7 +122,7 @@ export default function EventRegistrationPopup() {
                 color="orange.300"
                 fontWeight="bold"
               >
-                January 23-25, 2026
+                February 6-8, 2026
               </Text>
             </VStack>
           </ModalHeader>
