@@ -4,92 +4,16 @@ import { useState } from 'react';
 import { Box, Container, Heading, Text, Grid, GridItem } from '@chakra-ui/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { DEFAULT_SITE_CONTENT, type GalleryContent } from '@/lib/site-content';
 
 const MotionBox = motion(Box);
 const MotionGridItem = motion(GridItem);
 
-const galleryImages = [
-  // Big feature image on the left (spans 2 cols x 2 rows on md+)
-  {
-    id: 1,
-    src: '/images/gallery/gallery1.jpg',
-    alt: 'gallery 1',
-    mobileSpan: 2,
-    mobileRowSpan: 2,
-    gridColumnMd: '1 / span 2',
-    gridRowMd: '1 / span 2',
-  },
-  // Top right small images
-  {
-    id: 2,
-    src: '/images/gallery/gallery2.jpg',
-    alt: 'gallery 2',
-    mobileSpan: 1,
-    mobileRowSpan: 1,
-    gridColumnMd: '3 / span 1',
-    gridRowMd: '1 / span 1',
-  },
-  {
-    id: 3,
-    src: '/images/gallery/gallery3.jpg',
-    alt: 'gallery 3',
-    mobileSpan: 1,
-    mobileRowSpan: 1,
-    gridColumnMd: '4 / span 1',
-    gridRowMd: '1 / span 1',
-  },
-  // Tall image to the right spanning two rows (md+)
-  {
-    id: 4,
-    src: '/images/gallery/gallery4.jpg',
-    alt: 'gallery 4',
-    mobileSpan: 2,
-    mobileRowSpan: 1,
-    gridColumnMd: '3 / span 1',
-    gridRowMd: '2 / span 2',
-  },
-  // Wide image on the right column (md+)
-  {
-    id: 5,
-    src: '/images/gallery/gallery5.jpg',
-    alt: 'gallery 5',
-    mobileSpan: 2,
-    mobileRowSpan: 1,
-    gridColumnMd: '4 / span 1',
-    gridRowMd: '2 / span 1',
-  },
-  // Bottom left smalls under the big image
-  {
-    id: 6,
-    src: '/images/gallery/gallery6.jpg',
-    alt: 'gallery 6',
-    mobileSpan: 2,
-    mobileRowSpan: 1,
-    gridColumnMd: '1 / span 1',
-    gridRowMd: '3 / span 1',
-  },
-  {
-    id: 7,
-    src: '/images/gallery/gallery7.jpg',
-    alt: 'gallery 7',
-    mobileSpan: 2,
-    mobileRowSpan: 1,
-    gridColumnMd: '2 / span 1',
-    gridRowMd: '3 / span 1',
-  },
-  // Bottom right additional image for an 8th slot
-  {
-    id: 8,
-    src: '/images/gallery/gallery8.jpg',
-    alt: 'gallery 8',
-    mobileSpan: 2,
-    mobileRowSpan: 1,
-    gridColumnMd: '4 / span 1',
-    gridRowMd: '3 / span 1',
-  },
-];
-
-export default function GallerySection() {
+export default function GallerySection({
+  content = DEFAULT_SITE_CONTENT.gallery,
+}: {
+  content?: GalleryContent;
+}) {
   // Inline expand state and hover state
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
@@ -116,10 +40,10 @@ export default function GallerySection() {
             bgGradient="linear(to-r, #00d4ff, #0ea5e9)"
             bgClip="text"
           >
-            Gallery
+            {content.heading}
           </Heading>
           <Text fontSize={{ base: 'md', md: 'lg' }} color="gray.400">
-            Capturing our journey in aerial innovation
+            {content.subheading}
           </Text>
         </MotionBox>
 
@@ -130,7 +54,7 @@ export default function GallerySection() {
           gridAutoFlow="dense"
         >
           <AnimatePresence>
-            {galleryImages.map((image, index) => {
+            {content.images.map((image, index) => {
               const isExpanded = expandedId === image.id;
               const anyExpanded = expandedId !== null;
               return (

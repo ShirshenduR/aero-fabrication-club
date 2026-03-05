@@ -3,28 +3,33 @@
 import { Box, Container, Heading, Text, Stack, Button, Flex, Spinner } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
+import type { HeroContent } from '@/lib/site-content';
 
-const Drone3DCanvas = dynamic(() => import('../Drone3DCanvas'), { 
+const Drone3DCanvas = dynamic(() => import('../Drone3DCanvas'), {
   ssr: false,
   loading: () => (
-    <Box 
-      h="100%" 
-      w="100%" 
-      bg="transparent" 
-      display="flex" 
-      alignItems="center" 
+    <Box
+      h="100%"
+      w="100%"
+      bg="transparent"
+      display="flex"
+      alignItems="center"
       justifyContent="center"
     >
       <Spinner size="xl" color="#00d4ff" thickness="4px" />
     </Box>
-  )
+  ),
 });
 
 const MotionBox = motion(Box);
 const MotionHeading = motion(Heading);
 const MotionText = motion(Text);
 
-export default function HeroSection() {
+export default function HeroSection({
+  content,
+}: {
+  content: HeroContent;
+}) {
   return (
     <Box
       id="home"
@@ -97,7 +102,7 @@ export default function HeroSection() {
                 bgGradient="linear(to-r, #00d4ff, #0ea5e9)"
                 bgClip="text"
               >
-                AERO
+                {content.titleTop}
               </Text>
               <br />
               <Text
@@ -105,11 +110,11 @@ export default function HeroSection() {
                 bgGradient="linear(to-r, #0ea5e9, #0D47A1)"
                 bgClip="text"
               >
-                FABRICATION
+                {content.titleMiddle}
               </Text>
               <br />
               <Text as="span" color="white">
-                CLUB
+                {content.titleBottom}
               </Text>
             </MotionHeading>
 
@@ -122,7 +127,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 } as any}
             >
-              Where Innovation Takes Flight ✈️
+              {content.tagline} ✈️
             </MotionText>
 
             <MotionText
@@ -136,8 +141,7 @@ export default function HeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 } as any}
             >
-              Designing, building, and flying innovative unmanned aerial vehicles. 
-              Join us in pushing the boundaries of aerospace engineering.
+              {content.description}
             </MotionText>
 
             <MotionBox
@@ -161,7 +165,7 @@ export default function HeroSection() {
                     boxShadow: '0 10px 30px rgba(0, 212, 255, 0.4)',
                   }}
                 >
-                  Explore Projects
+                  {content.primaryButtonLabel}
                 </Button>
                 <Button
                   size={{ base: 'md', md: 'lg' }}
@@ -178,7 +182,7 @@ export default function HeroSection() {
                     transform: 'translateY(-2px)',
                   }}
                 >
-                  Get In Touch
+                  {content.secondaryButtonLabel}
                 </Button>
               </Stack>
             </MotionBox>
@@ -207,7 +211,7 @@ export default function HeroSection() {
             justifyContent="center"
             mx="auto"
           >
-            <Drone3DCanvas 
+            <Drone3DCanvas
               height="100%"
               width="100%"
             />

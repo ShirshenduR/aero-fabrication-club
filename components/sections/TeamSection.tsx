@@ -15,11 +15,16 @@ import {
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { FaChartLine, FaDollarSign, FaCalendarAlt, FaHashtag, FaChevronDown } from 'react-icons/fa';
+import { DEFAULT_SITE_CONTENT, type TeamContent } from '@/lib/site-content';
 
 const MotionBox = motion(Box);
 const MotionGrid = motion(Grid);
 
-export default function TeamSection() {
+export default function TeamSection({
+  content = DEFAULT_SITE_CONTENT.team,
+}: {
+  content?: TeamContent;
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [selectedDivision, setSelectedDivision] = useState<number | null>(null);
@@ -29,92 +34,18 @@ export default function TeamSection() {
     'linear(to-b, blue.950, gray.900)'
   );
 
-  const leadership = [
-    {
-      name: 'Dr. Akshay Pandey',
-      role: 'Faculty Incharge',
-      image: '/images/team/fic.jpeg',
-      description:
-        'Providing guidance and mentorship to the team, bringing years of experience in aerospace engineering and research.',
-    },
-    {
-      name: 'Chetan Anand Jhariya',
-      role: 'Coordinator',
-      image: '/images/team/coordinator.jpeg',
-      description:
-        "Leading the team's overall direction and strategy, coordinating between different sub-teams to ensure cohesive project execution.",
-    },
-    {
-      name: 'Shashaank Srivastava',
-      role: 'Co-Coordinator',
-      image: '/images/team/co-coordinator.jpeg',
-      description:
-        'Supporting the coordination efforts and providing leadership in specific project areas, ensuring smooth day-to-day operations.',
-    },
-    {
-      name: 'Rohit TM',
-      role: 'Co-Coordinator',
-      image: '/images/team/co-coordinator1.jpg',
-      description:
-        'Supporting the coordination efforts and providing leadership in specific project areas, ensuring smooth day-to-day operations.',
-    },
-  ];
+  const iconMap = {
+    calendar: FaCalendarAlt,
+    dollar: FaDollarSign,
+    hashtag: FaHashtag,
+    chart: FaChartLine,
+  };
 
-  const divisions = [
-    {
-      name: 'Events Team',
-      icon: FaCalendarAlt,
-      description:
-        'Oversees club operations, membership, and coordination between different teams.',
-      color: 'orange',
-      members: [
-        { name: 'Taraka Raghu Ram', role: 'Events Team', image: '/images/team/Ram.jpg' },
-        { name: 'Aakash Dhyani', role: 'Events Team', image: '/images/team/Aakash.jpg' },
-        { name: 'Ansh Yelore', role: 'Events Team', image: '/images/team/Ansh.jpg' },
-        { name: 'Dyumna Negi', role: 'Events Team', image: '/images/team/Dyumna.jpg' },
-      ],
-    },
-    {
-      name: 'Finance Team',
-      icon: FaDollarSign,
-      description:
-        'Manages budgeting, fundraising, and financial planning for all club projects and activities.',
-      color: 'green',
-      members: [
-        { name: 'Shirshendu R Tripathi', role: 'Finance Member', image: '/images/team/Shirshendu.jpg' },
-        { name: 'Apurva Verma', role: 'Finance Member', image: '/images/team/Apurva.jpg' },
-        { name: 'Shrreyansh Anil Singh', role: 'Finance Member', image: '/images/team/Shrreyansh.jpg' },
-        { name: 'Rudra Chaudhary', role: 'Finance Member', image: '/images/team/Rudra.jpg' },
-      ],
-    },
-    {
-      name: 'Social Media Team',
-      icon: FaHashtag,
-      description:
-        'Handles promotion, outreach, and communication of the club\'s activities and achievements.',
-      color: 'pink',
-      members: [
-        { name: 'Rajyavardhan Singh Rathore', role: 'Social Media Team', image: '/images/team/Rajyavardhan.jpg' },
-        { name: 'Vivek Malav', role: 'Social Media Team', image: '/images/team/Vivek.jpg' },
-        { name: 'Bhawani', role: 'Social Media Team', image: '/images/team/Bhawani.jpg' },
-        { name: 'Yash Dubey', role: 'Social Media Team', image: '/images/team/Yash.jpg' },
-      ],
-    },
-    {
-      name: 'Resources Team',
-      icon: FaChartLine,
-      description:
-        'Manages all club components, resources and inventory to support club operations.',
-      color: 'purple',
-      members: [
-        { name: 'Laxman', role: 'Resources Team', image: '/images/team/Laxman.jpg' },
-        { name: 'Sharad Gupta', role: 'Resource Team', image: '/images/team/Sharad.jpg' },
-        { name: 'Shrreyansh Anil Singh', role: 'Resource Team', image: '/images/team/Shrreyansh.jpg' },
-        { name: 'Harsh Giri', role: 'Resource Team', image: '/images/team/Harsh.jpg' },
-        { name: 'Abhay', role: 'Resource Team', image: '/images/team/Abhay.jpg' },
-      ],
-    },
-  ];
+  const leadership = content.leadership;
+  const divisions = content.divisions.map((division) => ({
+    ...division,
+    icon: iconMap[division.icon] ?? FaCalendarAlt,
+  }));
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -324,11 +255,10 @@ export default function TeamSection() {
             mb={{ base: 3, md: 4 }}
             color="white"
           >
-            OUR TEAM
+            {content.heading}
           </Heading>
           <Text fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} color="gray.400" maxW="3xl" mx="auto" px={{ base: 2, md: 0 }}>
-            Meet the passionate individuals driving innovation and excellence in
-            aerospace engineering
+            {content.subheading}
           </Text>
         </MotionBox>
 
@@ -400,7 +330,7 @@ export default function TeamSection() {
             color="white"
             mb={12}
           >
-            Team Divisions
+            {content.divisionsHeading}
           </Heading>
 
           {/* Mobile: Stack layout to prevent overlap */}

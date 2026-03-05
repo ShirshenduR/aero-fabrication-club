@@ -24,10 +24,15 @@ interface NavLinkProps {
 }
 
 const NavLink = ({ children, href, onClick }: NavLinkProps) => {
-  const scrollToSection = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: 'smooth' });
+  const handleClick = (e: React.MouseEvent) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const element = document.querySelector(href);
+      element?.scrollIntoView({ behavior: 'smooth' });
+      onClick?.();
+      return;
+    }
+
     onClick?.();
   };
 
@@ -37,7 +42,7 @@ const NavLink = ({ children, href, onClick }: NavLinkProps) => {
       href={href}
       variant="ghost"
       color="white"
-      onClick={scrollToSection}
+      onClick={handleClick}
       _hover={{
         bg: 'rgba(0, 212, 255, 0.1)',
         color: '#00d4ff',
@@ -71,7 +76,9 @@ export default function Navigation() {
     { label: 'Events', href: '#events' },
     { label: 'Achievements', href: '#achievements' },
     { label: 'Team', href: '#team' },
+    { label: 'Alumni', href: '#alumni' },
     { label: 'Contact', href: '#contact' },
+    { label: 'Admin', href: '/admin/login' },
   ];
 
   return (

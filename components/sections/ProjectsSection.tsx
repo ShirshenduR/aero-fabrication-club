@@ -19,72 +19,20 @@ import {
 } from '@chakra-ui/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { DEFAULT_SITE_CONTENT, type ProjectItem, type ProjectsContent } from '@/lib/site-content';
 
 const MotionBox = motion(Box);
 
-const projects = [
-  {
-    id: 1,
-    title: 'Micro Class UAV',
-    category: 'Completed',
-    image: '/images/projects/Project1.jpg',
-    description: 'The club designed, built and flew a 3D printed RC Plane. The Micro Class UAV made trades between two potentially conflicting requirements: carrying the highest payload fraction possible and pursuing the lowest empty weight possible.',
-    tags: ['3D Printing', 'RC Plane', 'Payload Optimization'],
-    details: 'Advanced lightweight design with optimized payload capacity. Features include autonomous flight control, real-time telemetry, and modular payload system.',
-  },
-  {
-    id: 2,
-    title: 'Autonomous UAV with Hotspot Detection',
-    category: 'Completed',
-    image: '/images/projects/Project2.jpg',
-    description: 'The Club designed, built and flew an Autonomous unmanned aerial vehicle that met many anticipated requirements and was capable of hotspot detection.',
-    tags: ['Autonomous', 'Thermal Imaging', 'AI/ML'],
-    details: 'Equipped with thermal cameras and AI-powered detection algorithms. Can autonomously patrol areas and identify heat anomalies in real-time.',
-  },
-  {
-    id: 3,
-    title: 'Racing Drone',
-    category: 'Completed',
-    image: '/images/projects/Project3.jpg',
-    description: 'The club designed, built and flew a high-speed, agile unmanned aerial vehicle designed specifically for competitive racing. Its sleek, aerodynamic frame is typically made from lightweight carbon fiber to maximize speed and maneuverability.',
-    tags: ['Racing', 'Carbon Fiber', 'High-Speed'],
-    details: 'Top speed of 120+ km/h with sub-3 second 0-100 acceleration. Features FPV camera system and advanced flight controller.',
-  },
-  {
-    id: 4,
-    title: 'Tactical UAV',
-    category: 'Ongoing',
-    image: '/images/projects/ongoingProject1.jpg',
-    description: 'A mid-range tactical UAV designed for surveillance and reconnaissance missions with extended flight time and advanced payload capabilities.',
-    tags: ['Surveillance', 'Long Range', 'Advanced Sensors'],
-    details: 'Under development: 2-hour flight time, 10km range, HD video transmission, and multi-sensor integration.',
-  },
-  {
-    id: 5,
-    title: 'Hybrid VTOL Drone',
-    category: 'Completed',
-    image: '/images/projects/ongoingProject2.jpg',
-    description: 'An innovative hybrid drone combining vertical takeoff and landing capabilities with efficient fixed-wing flight for extended range missions.',
-    tags: ['VTOL', 'Hybrid', 'Long Endurance'],
-    details: 'Combines quadcopter and fixed-wing capabilities for versatile mission profiles. Target endurance: 3 hours.',
-  },
-  {
-    id: 6,
-    title: 'Swarm Robotics',
-    category: 'Ongoing',
-    image: '/images/projects/futureProject1.jpg',
-    description: 'Multiple autonomous drones working together in coordinated swarm behavior for complex mission scenarios.',
-    tags: ['Swarm AI', 'Multi-Agent', 'Coordination'],
-    details: 'Research project exploring decentralized swarm intelligence with 5+ drones operating in synchronized formation.',
-  },
-];
-
-export default function ProjectsSection() {
+export default function ProjectsSection({
+  content = DEFAULT_SITE_CONTENT.projects,
+}: {
+  content?: ProjectsContent;
+}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const openProject = (project: typeof projects[0]) => {
+  const openProject = (project: ProjectItem) => {
     setSelectedProject(project);
     onOpen();
   };
@@ -108,10 +56,10 @@ export default function ProjectsSection() {
             bgClip="text"
             mb={4}
           >
-            Our Projects
+            {content.heading}
           </Heading>
           <Text fontSize="xl" color="gray.400" maxW="2xl" mx="auto">
-            Pushing the boundaries of unmanned aerial vehicle technology
+            {content.subheading}
           </Text>
         </MotionBox>
 
@@ -121,7 +69,7 @@ export default function ProjectsSection() {
           w="100%"
         >
           <AnimatePresence>
-            {projects.map((project, index) => (
+            {content.items.map((project, index) => (
               <MotionBox
                 key={project.id}
                 layout

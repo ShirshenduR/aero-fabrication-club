@@ -14,47 +14,32 @@ import {
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { DEFAULT_SITE_CONTENT, type ContactContent } from '@/lib/site-content';
 
 const MotionBox = motion(Box);
 
-export default function ContactSection() {
+const contactIconMap = {
+  email: FaEnvelope,
+  phone: FaPhone,
+  location: FaMapMarkerAlt,
+};
+
+const socialIconMap = {
+  instagram: FaInstagram,
+  linkedin: FaLinkedin,
+  youtube: FaYoutube,
+};
+
+export default function ContactSection({
+  content = DEFAULT_SITE_CONTENT.contact,
+}: {
+  content?: ContactContent;
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   const bgColor = '#0a0e27';
   const cardBg = '#1a2142';
-
-  const contactInfo = [
-    {
-      icon: FaEnvelope,
-      title: 'Email',
-      details: ['afc@iiitdmj.ac.in'],
-      color: 'blue',
-    },
-    {
-      icon: FaPhone,
-      title: 'Phone',
-      details: ['+91 70009 47461', '+91 91403 40531'],
-      color: 'green',
-    },
-    {
-      icon: FaMapMarkerAlt,
-      title: 'Location',
-      details: [
-        'AFC Workshop',
-        'Above Canteen, Hall-1',
-        'IIITDM Jabalpur',
-        'Pin: 482005',
-      ],
-      color: 'red',
-    },
-  ];
-
-  const socialLinks = [
-    { icon: FaInstagram, url: 'https://www.instagram.com/afc_iiitdmj/', label: 'Instagram', color: 'pink' },
-    { icon: FaLinkedin, url: 'https://in.linkedin.com/company/aero-fabrication-club-iiitdmj', label: 'LinkedIn', color: 'blue' },
-    { icon: FaYoutube, url: 'https://www.youtube.com/channel/UCYnz9APdl9-aM4S9pxrRsqA', label: 'YouTube', color: 'red' },
-  ];
 
   return (
     <Box id="contact" py={{ base: 12, md: 16, lg: 20 }} bg="transparent" ref={ref} w="100%" maxW="100%" overflow="hidden">
@@ -74,10 +59,10 @@ export default function ContactSection() {
             bgGradient="linear(to-r, #00d4ff, #0ea5e9)"
             bgClip="text"
           >
-            Get In Touch
+            {content.heading}
           </Heading>
           <Text fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} color="gray.300" maxW="3xl" mx="auto" px={{ base: 2, md: 0 }}>
-            Have questions or want to collaborate? We'd love to hear from you!
+            {content.subheading}
           </Text>
         </MotionBox>
 
@@ -117,7 +102,7 @@ export default function ContactSection() {
                 py={4}
                 bgGradient="linear(to-r, rgba(0,212,255,0.1), rgba(14,165,233,0.1))"
               >
-                Our Location
+                {content.locationTitle}
               </Heading>
               <Box
                 flex="1"
@@ -128,7 +113,7 @@ export default function ContactSection() {
               >
                 <Box
                   as="iframe"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3666.926989456789!2d79.91599931495984!3d23.177434584870032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3981a9006297c6a3%3A0x79a1a4030eeb7795!2sHall-1%2C%20IIITDM%20Jabalpur!5e0!3m2!1sen!2sin!4v1760711351482!5m2!1sen!2sin"
+                  src={content.mapEmbedUrl}
                   width="100%"
                   height="100%"
                   position="absolute"
@@ -155,7 +140,7 @@ export default function ContactSection() {
             maxW="100%"
           >
             <VStack spacing={6} align="stretch" w="100%" maxW="100%">
-              {contactInfo.map((info, index) => (
+              {content.contactInfo.map((info, index) => (
                 <Box
                   key={index}
                   bg={cardBg}
@@ -179,7 +164,7 @@ export default function ContactSection() {
                       borderRadius="lg"
                     >
                       <Icon
-                        as={info.icon}
+                        as={contactIconMap[info.icon] ?? FaEnvelope}
                         boxSize={6}
                         color={`${info.color}.500`}
                         transform={info.title === 'Phone' ? 'rotate(90deg)' : undefined}
@@ -218,7 +203,7 @@ export default function ContactSection() {
                   Follow Us
                 </Heading>
                 <HStack spacing={4}>
-                  {socialLinks.map((social, index) => (
+                  {content.socialLinks.map((social, index) => (
                     <Button
                       key={index}
                       as="a"
@@ -233,7 +218,7 @@ export default function ContactSection() {
                         bg: `${social.color}.100`,
                       }}
                     >
-                      <Icon as={social.icon} boxSize={6} />
+                      <Icon as={socialIconMap[social.icon] ?? FaInstagram} boxSize={6} />
                     </Button>
                   ))}
                 </HStack>

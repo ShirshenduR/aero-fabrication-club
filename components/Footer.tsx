@@ -32,6 +32,7 @@ export default function Footer() {
     { label: 'Projects', href: '#projects' },
     { label: 'Achievements', href: '#achievements' },
     { label: 'Team', href: '#team' },
+    { label: 'Alumni', href: '#alumni' },
     { label: 'Contact', href: '#contact' },
   ];
 

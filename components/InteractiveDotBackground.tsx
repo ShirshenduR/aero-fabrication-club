@@ -152,9 +152,7 @@ export default function InteractiveDotBackground() {
       pointerEvents="none"
       style={{ 
         display: 'block',
-        // Ensure proper hit-testing calculations for pointer coords
-    // Ensure pointer coords correct
-        touchAction: 'none',
+        touchAction: 'auto',
       }}
     />
   );

@@ -13,31 +13,22 @@ import {
 import { motion } from 'framer-motion';
 import { FaCalendarAlt, FaTrophy, FaUsers, FaRocket } from 'react-icons/fa';
 import Image from 'next/image';
+import { DEFAULT_SITE_CONTENT, type EventsContent } from '@/lib/site-content';
 
 const MotionBox = motion(Box);
 
-const events = [
-  {
-    title: 'Thrust – Annual Water Rocket Event',
-    year: '2025',
-    icon: FaRocket,
-    image: '/images/events/Thrust.jpg',
-    description:
-      'Our annual flagship water rocket event specially curated for first-year students. Teams design, build, and launch water-propelled rockets competing for maximum altitude and accuracy.',
-    color: '#00d4ff',
-  },
-  {
-    title: 'Udaan – RC Glider Competition',
-    year: '2025',
-    icon: FaTrophy,
-    image: '/images/events/udaan.jpg',
-    description:
-      'A club-organized RC glider competition focused on fundamentals of aerodynamics and flight. Participants design, build, and test fly their gliders for glide time and control precision.',
-    color: '#0ea5e9',
-  },
-];
+const iconMap = {
+  rocket: FaRocket,
+  trophy: FaTrophy,
+  users: FaUsers,
+  calendar: FaCalendarAlt,
+};
 
-export default function EventReportsSection() {
+export default function EventReportsSection({
+  content = DEFAULT_SITE_CONTENT.events,
+}: {
+  content?: EventsContent;
+}) {
   return (
     <Box id="events" py={{ base: 12, md: 16, lg: 20 }} bg="transparent" w="100%" maxW="100%" overflow="hidden">
       <Container maxW="7xl" px={{ base: 4, md: 6 }}>
@@ -57,15 +48,15 @@ export default function EventReportsSection() {
             bgClip="text"
             mb={{ base: 3, md: 4 }}
           >
-            Events & Competitions
+            {content.heading}
           </Heading>
           <Text fontSize={{ base: 'sm', sm: 'md', md: 'lg', lg: 'xl' }} color="gray.300" maxW="2xl" mx="auto" px={{ base: 2, md: 0 }}>
-            Workshops, competitions, and activities hosted by our club throughout the year
+            {content.subheading}
           </Text>
         </MotionBox>
 
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
-          {events.map((event, index) => (
+          {content.items.map((event, index) => (
             <MotionBox
               key={index}
               initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
@@ -124,7 +115,7 @@ export default function EventReportsSection() {
               <VStack align="start" spacing={4} p={6}>
                 <HStack spacing={3}>
                   <Icon
-                    as={event.icon}
+                    as={iconMap[event.icon] ?? FaRocket}
                     boxSize={7}
                     color={event.color}
                   />

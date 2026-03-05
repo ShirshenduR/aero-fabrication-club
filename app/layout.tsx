@@ -5,7 +5,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import EventRegistrationPopup from "@/components/EventRegistrationPopup";
+import SiteShell from "@/components/SiteShell";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -84,10 +84,9 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Providers>
-          <Navigation />
-          <main>{children}</main>
-          <Footer />
-          <EventRegistrationPopup />
+          <SiteShell>
+            {children}
+          </SiteShell>
         </Providers>
       </body>
     </html>

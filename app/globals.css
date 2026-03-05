@@ -125,11 +125,12 @@ main {
   body {
     font-size: 14px;
   }
-  
-  /* Prevent touch action scroll issues on mobile */
+
+  /* Keep natural vertical scrolling behavior on mobile */
   html, body {
-    overscroll-behavior-y: none;
+    overscroll-behavior-y: auto;
     -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
   }
 }
 

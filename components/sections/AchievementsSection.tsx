@@ -15,157 +15,28 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { FaTrophy, FaMedal, FaAward } from 'react-icons/fa';
 import Image from 'next/image';
+import { DEFAULT_SITE_CONTENT, type AchievementsContent } from '@/lib/site-content';
 
 const MotionBox = motion(Box);
 const MotionFlex = motion(Flex);
 
-export default function AchievementsSection() {
+const iconMap = {
+  trophy: FaTrophy,
+  medal: FaMedal,
+  award: FaAward,
+};
+
+export default function AchievementsSection({
+  content = DEFAULT_SITE_CONTENT.achievements,
+}: {
+  content?: AchievementsContent;
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   const bgColor = '#0a0e27';
 
-  const achievements = [
-    {
-      id: 1,
-      title: 'Sky Maneuver - IIT Roorkee',
-      year: '2025',
-      award: '2nd Prize',
-      image: '/images/achievements/SkyManeuver25.jpg',
-      description:
-        'Secured 2nd prize in Sky Maneuver at IIT Roorkee with consistent performance across precision flight and maneuvering rounds.',
-      icon: FaMedal,
-      color: 'blue',
-    },
-    {
-      id: 2,
-      title: 'Smart India Hackathon 2024',
-      year: '2024',
-      award: 'Winners - Hardware Edition',
-      image: '/images/achievements/SIH24.jpg',
-      description:
-        'We emerged as winners in the Hardware Edition of Smart India Hackathon 2024, delivering a practical, high-impact solution under tight constraints.',
-      icon: FaAward,
-      color: 'yellow',
-    },
-    {
-      id: 3,
-      title: 'Aerothon 2024',
-      year: '2024',
-      award: 'Winner - Best Autonomous Drone',
-      image: '/images/achievements/Aerothon24.jpg',
-      description:
-        'At Aerothon 2024, our autonomous platform won the Best Autonomous Drone award for robust perception, planning, and mission execution.',
-      icon: FaTrophy,
-      color: 'yellow',
-    },
-    {
-      id: 4,
-      title: 'IIT Kanpur Techkriti - Autodesk Design Challenge',
-      year: '2024',
-      award: 'Winner',
-      image: '/images/achievements/Techkirti.jpg',
-      description:
-        'Won the Autodesk Design Challenge at IIT Kanpur Techkriti, demonstrating superior design and engineering capabilities.',
-      icon: FaTrophy,
-      color: 'yellow',
-    },
-    {
-      id: 5,
-      title: 'Sky Maneuver - IIT Roorkee',
-      year: '2024',
-      award: 'AIR 2',
-      image: '/images/achievements/SkyManeuver24.png',
-      description:
-        'Secured All India Rank 2 in Sky Maneuver event at IIT Roorkee 2024, demonstrating exceptional drone maneuvering capabilities.',
-      icon: FaMedal,
-      color: 'blue',
-    },
-    {
-      id: 6,
-      title: 'IIT Bombay Boeing Aeromodelling',
-      year: '2023',
-      award: '3 Teams in Top 20',
-      image: '/images/achievements/Boeingiitbombay.jpg',
-      description:
-        'Exceptional performance with 3 teams qualifying in the top 20 at IIT Bombay Boeing Aeromodelling Competition 2023.',
-      icon: FaMedal,
-      color: 'blue',
-    },
-    {
-      id: 7,
-      title: 'SAE DDC 2023',
-      year: '2023',
-      award: 'AIR 1 - Best Aerodynamic Analysis (CFD)',
-      image: '/images/achievements/SAEDDC23.jpg',
-      description:
-        'Secured All India Rank 1 for Best Aerodynamic Analysis using Computational Fluid Dynamics at SAE Drone Design Challenge 2023.',
-      icon: FaTrophy,
-      color: 'yellow',
-    },
-    {
-      id: 8,
-      title: 'Flight Fury - IIT Roorkee Techfest',
-      year: '2023',
-      award: 'AIR 3',
-      image: '/images/achievements/Flightfury iit roorkee 23.jpg',
-      description:
-        'Achieved All India Rank 3 in Flight Fury 2023 at IIT Roorkee Techfest, showcasing exceptional drone racing skills.',
-      icon: FaTrophy,
-      color: 'orange',
-    },
-  ];
-
-  const timeline = [
-    {
-      year: '2023',
-      title: 'Flight Fury – IIT Roorkee Techfest (AIR 3)',
-      description:
-        'Achieved All India Rank 3 in Flight Fury 2023 at IIT Roorkee Techfest, showcasing exceptional drone racing skills and competitive performance.',
-    },
-    {
-      year: '2023',
-      title: 'SAE DDC 2023 – Best Aerodynamic Analysis (AIR 1)',
-      description:
-        'Secured All India Rank 1 for Best Aerodynamic Analysis using Computational Fluid Dynamics at SAE Drone Design Challenge 2023.',
-    },
-    {
-      year: '2023',
-      title: 'IIT Bombay Boeing Aeromodelling Competition (3 Teams in Top 20)',
-      description:
-        'Demonstrated exceptional capability with 3 teams qualifying in the top 20 at IIT Bombay Boeing Aeromodelling Competition 2023.',
-    },
-    {
-      year: '2024',
-      title: 'Sky Maneuver – IIT Roorkee (AIR 2)',
-      description:
-        'Secured All India Rank 2 in Sky Maneuver event at IIT Roorkee 2024, demonstrating exceptional precision flight and advanced maneuvering capabilities.',
-    },
-    {
-      year: '2024',
-      title: 'IIT Kanpur Techkriti – Autodesk Design Challenge (Winner)',
-      description:
-        'Won the Autodesk Design Challenge at IIT Kanpur Techkriti, demonstrating superior design and engineering capabilities with innovative solutions.',
-    },
-    {
-      year: '2024',
-      title: 'Aerothon 2024 – Best Autonomous Drone (Winner)',
-      description:
-        'Won the Best Autonomous Drone award at Aerothon 2024 for robust perception, planning, and mission execution with cutting-edge autonomous systems.',
-    },
-    {
-      year: '2024',
-      title: 'SIH 2024 – Hardware Edition (Winners)',
-      description:
-        'Winners at Smart India Hackathon 2024 (Hardware Edition), delivering a practical, high-impact solution under tight constraints and time pressure.',
-    },
-    {
-      year: '2025',
-      title: 'Sky Maneuver – IIT Roorkee (2nd Prize)',
-      description:
-        'Secured 2nd prize in Sky Maneuver at IIT Roorkee with consistent performance across precision flight and advanced maneuver rounds.',
-    },
-  ];  const containerVariants = {
+  const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -204,10 +75,10 @@ export default function AchievementsSection() {
             bgGradient="linear(to-r, #00d4ff, #0ea5e9)"
             bgClip="text"
           >
-            ACHIEVEMENTS
+            {content.heading}
           </Heading>
           <Text fontSize="lg" color="gray.300" maxW="3xl" mx="auto">
-            Our victories and recognition in national and international drone competitions
+            {content.subheading}
           </Text>
         </MotionBox>
 
@@ -216,7 +87,7 @@ export default function AchievementsSection() {
           gap={8}
           mb={16}
         >
-          {achievements.map((achievement, index) => (
+          {content.items.map((achievement, index) => (
             <MotionBox
               key={achievement.id}
               initial={{ opacity: 0, y: 50 }}
@@ -253,7 +124,7 @@ export default function AchievementsSection() {
                     p={2}
                     borderRadius="full"
                   >
-                    <Icon as={achievement.icon} boxSize={6} />
+                    <Icon as={iconMap[achievement.icon] ?? FaTrophy} boxSize={6} />
                   </Box>
                 </Box>
                 <Box p={6}>
@@ -286,7 +157,7 @@ export default function AchievementsSection() {
             textAlign="center"
             mb={12}
           >
-            Our Journey
+            {content.journeyHeading}
           </Heading>
 
           <Box position="relative">
@@ -300,7 +171,7 @@ export default function AchievementsSection() {
               transform={{ md: 'translateX(-50%)' }}
             />
 
-            {timeline.map((event, index) => (
+            {content.timeline.map((event, index) => (
               <MotionFlex
                 key={index}
                 variants={itemVariants}

@@ -16,11 +16,16 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { FaRocket, FaBullseye, FaUsers } from 'react-icons/fa';
 import Image from 'next/image';
+import { DEFAULT_SITE_CONTENT, type AboutContent } from '@/lib/site-content';
 
 const MotionBox = motion(Box);
 const MotionGrid = motion(Grid);
 
-export default function AboutSection() {
+export default function AboutSection({
+  content = DEFAULT_SITE_CONTENT.about,
+}: {
+  content?: AboutContent;
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
@@ -67,11 +72,10 @@ export default function AboutSection() {
             bgGradient="linear(to-r, #00d4ff, #0ea5e9)"
             bgClip="text"
           >
-            About Us
+            {content.heading}
           </Heading>
           <Text fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} color="gray.300" maxW="3xl" mx="auto" px={{ base: 2, md: 0 }}>
-            Meet the passionate individuals driving innovation and excellence in
-            aerospace engineering
+            {content.subheading}
           </Text>
         </MotionBox>
 
@@ -97,7 +101,7 @@ export default function AboutSection() {
               <AspectRatio ratio={16/9}>
                 <Box position="relative" w="100%" h="100%">
                   <Image
-                    src="/images/about/about.jpg"
+                    src={content.image}
                     alt="Aero Fabrication Club Team"
                     fill
                     style={{ objectFit: 'contain' }}
@@ -119,24 +123,19 @@ export default function AboutSection() {
           <MotionBox variants={itemVariants}>
             <Stack spacing={{ base: 4, md: 6 }}>
               <Heading as="h3" fontSize={{ base: 'xl', sm: '2xl', md: '3xl' }}>
-                Who We Are
+                {content.whoWeAreHeading}
               </Heading>
-              <Text fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} color="gray.300" _dark={{ color: 'gray.300' }} lineHeight={{ base: '1.6', md: '1.7' }}>
-                The Aero Fabrication Club embodies the spirit of "Creating to Learn, 
-                Learning to Create." We believe in building from the very basic laws 
-                provided by nature, incorporating the fundamental principles of aerospace 
-                and fabrication engineering.
-              </Text>
-              <Text fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} color="gray.300" _dark={{ color: 'gray.300' }} lineHeight={{ base: '1.6', md: '1.7' }}>
-                Our mission is to provide hands-on experience in designing, building, 
-                and flying unmanned aerial vehicles. We foster innovation, teamwork, 
-                and practical engineering skills among our members.
-              </Text>
-              <Text fontSize={{ base: 'sm', sm: 'md', md: 'lg' }} color="gray.300" _dark={{ color: 'gray.300' }} lineHeight={{ base: '1.6', md: '1.7' }}>
-                Constituting participation from all years of the undergraduate program, 
-                we are an ever-growing and ever-learning family dedicated to pushing 
-                the boundaries of what's possible in aerospace engineering.
-              </Text>
+              {content.paragraphs.map((paragraph, index) => (
+                <Text
+                  key={index}
+                  fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
+                  color="gray.300"
+                  _dark={{ color: 'gray.300' }}
+                  lineHeight={{ base: '1.6', md: '1.7' }}
+                >
+                  {paragraph}
+                </Text>
+              ))}
             </Stack>
           </MotionBox>
         </MotionGrid>
@@ -148,108 +147,48 @@ export default function AboutSection() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
         >
-          <MotionBox variants={itemVariants}>
-            <Box
-              bg={cardBg}
-              borderRadius={{ base: 'xl', md: '2xl' }}
-              p={{ base: 6, md: 8 }}
-              h="100%"
-              borderWidth="2px"
-              borderColor={cardBorder}
-              boxShadow="lg"
-              transition="all 0.3s ease"
-              _hover={{
-                transform: 'translateY(-8px)',
-                boxShadow: '2xl',
-                borderColor: 'brand.500',
-              }}
-            >
-              <Icon
-                as={FaBullseye}
-                w={{ base: 10, md: 12 }}
-                h={{ base: 10, md: 12 }}
-                color="brand.500"
-                mb={4}
-              />
-              <Heading as="h4" fontSize={{ base: 'lg', sm: 'xl', md: '2xl' }} mb={{ base: 3, md: 4 }}>
-                Our Vision
-              </Heading>
-              <Text color="gray.300" fontSize={{ base: 'sm', md: 'md' }} lineHeight={{ base: '1.6', md: '1.7' }} _dark={{ color: 'gray.300' }}>
-                To be at the forefront of innovation in unmanned aerial vehicle 
-                technology, inspiring the next generation of aerospace engineers 
-                through hands-on learning and collaborative problem-solving.
-              </Text>
-            </Box>
-          </MotionBox>
+          {content.cards.map((card, index) => {
+            const iconMap = {
+              bullseye: FaBullseye,
+              rocket: FaRocket,
+              users: FaUsers,
+            };
+            const icon = iconMap[card.icon] ?? FaBullseye;
 
-          <MotionBox variants={itemVariants}>
-            <Box
-              bg={cardBg}
-              borderRadius={{ base: 'xl', md: '2xl' }}
-              p={{ base: 6, md: 8 }}
-              h="100%"
-              borderWidth="2px"
-              borderColor={cardBorder}
-              boxShadow="lg"
-              transition="all 0.3s ease"
-              _hover={{
-                transform: 'translateY(-8px)',
-                boxShadow: '2xl',
-                borderColor: 'brand.500',
-              }}
-            >
-              <Icon
-                as={FaRocket}
-                w={{ base: 10, md: 12 }}
-                h={{ base: 10, md: 12 }}
-                color="brand.500"
-                mb={4}
-              />
-              <Heading as="h4" fontSize={{ base: 'lg', sm: 'xl', md: '2xl' }} mb={{ base: 3, md: 4 }}>
-                Our Mission
-              </Heading>
-              <Text color="gray.300" fontSize={{ base: 'sm', md: 'md' }} lineHeight={{ base: '1.6', md: '1.7' }} _dark={{ color: 'gray.300' }}>
-                To provide students with practical experience in aerospace engineering 
-                through competitions, workshops, and collaborative projects, creating 
-                an environment where they can apply theoretical knowledge to real-world 
-                challenges.
-              </Text>
-            </Box>
-          </MotionBox>
-
-          <MotionBox variants={itemVariants}>
-            <Box
-              bg={cardBg}
-              borderRadius={{ base: 'xl', md: '2xl' }}
-              p={{ base: 6, md: 8 }}
-              h="100%"
-              borderWidth="2px"
-              borderColor={cardBorder}
-              boxShadow="lg"
-              transition="all 0.3s ease"
-              _hover={{
-                transform: 'translateY(-8px)',
-                boxShadow: '2xl',
-                borderColor: 'brand.500',
-              }}
-            >
-              <Icon
-                as={FaUsers}
-                w={{ base: 10, md: 12 }}
-                h={{ base: 10, md: 12 }}
-                color="brand.500"
-                mb={4}
-              />
-              <Heading as="h4" fontSize={{ base: 'lg', sm: 'xl', md: '2xl' }} mb={{ base: 3, md: 4 }}>
-                Our Community
-              </Heading>
-              <Text color="gray.300" fontSize={{ base: 'sm', md: 'md' }} lineHeight={{ base: '1.6', md: '1.7' }} _dark={{ color: 'gray.300' }}>
-                We envision a community where students can freely explore their ideas, 
-                learn from failures, and celebrate successes in a supportive environment 
-                that promotes technical excellence and creativity.
-              </Text>
-            </Box>
-          </MotionBox>
+            return (
+              <MotionBox variants={itemVariants} key={index}>
+                <Box
+                  bg={cardBg}
+                  borderRadius={{ base: 'xl', md: '2xl' }}
+                  p={{ base: 6, md: 8 }}
+                  h="100%"
+                  borderWidth="2px"
+                  borderColor={cardBorder}
+                  boxShadow="lg"
+                  transition="all 0.3s ease"
+                  _hover={{
+                    transform: 'translateY(-8px)',
+                    boxShadow: '2xl',
+                    borderColor: 'brand.500',
+                  }}
+                >
+                  <Icon
+                    as={icon}
+                    w={{ base: 10, md: 12 }}
+                    h={{ base: 10, md: 12 }}
+                    color="brand.500"
+                    mb={4}
+                  />
+                  <Heading as="h4" fontSize={{ base: 'lg', sm: 'xl', md: '2xl' }} mb={{ base: 3, md: 4 }}>
+                    {card.title}
+                  </Heading>
+                  <Text color="gray.300" fontSize={{ base: 'sm', md: 'md' }} lineHeight={{ base: '1.6', md: '1.7' }} _dark={{ color: 'gray.300' }}>
+                    {card.description}
+                  </Text>
+                </Box>
+              </MotionBox>
+            );
+          })}
         </MotionGrid>
       </Container>
     </Box>
