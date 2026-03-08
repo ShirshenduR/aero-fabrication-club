@@ -392,9 +392,37 @@ export const DEFAULT_SITE_CONTENT: SiteContent = {
     heading: 'Alumni',
     subheading: 'Former members who helped shape AFC and continue to inspire us.',
     members: [
-      { name: 'Alumni Name 1', role: 'Batch 2024', image: '/images/team/coordinator.jpeg', linkedIn: 'https://www.linkedin.com/' },
-      { name: 'Alumni Name 2', role: 'Batch 2023', image: '/images/team/co-coordinator.jpeg', linkedIn: 'https://www.linkedin.com/' },
-      { name: 'Alumni Name 3', role: 'Batch 2022', image: '/images/team/co-coordinator1.jpg', linkedIn: 'https://www.linkedin.com/' },
+      // Batch 2020
+      { name: 'Durganshu Mishra', role: 'Batch 2020', image: '/images/alumni/Durganshu Mishra 2016-2020.jpg', linkedIn: 'https://www.linkedin.com/in/durganshu/details/education/' },
+      
+      // Batch 2021
+      { name: 'Vyom Sharma', role: 'Batch 2021', image: '/images/alumni/Vyom Sharma 2017-2021.jpg', linkedIn: 'https://www.linkedin.com/in/vyomsharma-vs/?originalSubdomain=in' },
+      
+      // Batch 2022
+      { name: 'Piyush Sharma', role: 'Batch 2022', image: '/images/alumni/Piyush Sharma 2018-2022.jpg', linkedIn: 'https://www.linkedin.com/in/piyush-sharma-177108174/?originalSubdomain=in' },
+      
+      // Batch 2023
+      { name: 'Ashi', role: 'Batch 2023', image: '/images/alumni/Ashi 2019-2023 batch.jpg', linkedIn: 'https://www.linkedin.com/in/ashiashi/?originalSubdomain=in' },
+      
+      // Batch 2024
+      { name: 'Amar Bhong', role: 'Batch 2024', image: '/images/alumni/Amar Bhong 2020-2024.jpg', linkedIn: 'https://www.linkedin.com/in/amar-bhong-37bb38200/?originalSubdomain=in' },
+      { name: 'Deepankar Kumar Chaudhary', role: 'Batch 2024', image: '/images/alumni/Deepankar Kumar Chaudhary 2020-2024.jpg', linkedIn: 'https://www.linkedin.com/in/dpnkrkr/?originalSubdomain=in' },
+      { name: 'Ekansh Agarwala', role: 'Batch 2024', image: '/images/alumni/Ekansh Agarwala 2020-2024.jpg', linkedIn: 'https://www.linkedin.com/in/ekansh-agarwala/?originalSubdomain=in' },
+      { name: 'Rajat Gupta', role: 'Batch 2024', image: '/images/alumni/Rajat Gupta 2020-2024.jpg', linkedIn: 'https://www.linkedin.com/in/-rajatgupta/?originalSubdomain=in' },
+      { name: 'Rushil Ambastha', role: 'Batch 2024', image: '/images/alumni/Rushil Ambastha 2020-2024.jpg', linkedIn: 'https://www.linkedin.com/in/rushil-ambastha-093349219/?originalSubdomain=in' },
+      
+      // Batch 2025
+      { name: 'Nitin Maurya', role: 'Batch 2025', image: '/images/alumni/Nitin Maurya 21-25.jpg', linkedIn: 'https://www.linkedin.com/in/nitin-maurya-8415a524b/' },
+      { name: 'Ritik Jangid', role: 'Batch 2025', image: '/images/alumni/Ritik Jangid 2021-2025.jpg', linkedIn: 'https://www.linkedin.com/in/ritik-jangid-b24559238/?originalSubdomain=in' },
+      { name: 'Rohit Sonkar', role: 'Batch 2025', image: '/images/alumni/Rohit Sonkar 2021-2025.jpg', linkedIn: 'https://www.linkedin.com/in/rohit-sonkar-4139b626b/?originalSubdomain=in' },
+      { name: 'Rudresh Singh', role: 'Batch 2025', image: '/images/alumni/Rudresh Singh 2021-2025 batch.jpg', linkedIn: 'https://www.linkedin.com/in/rudresh-singh-792175229/?originalSubdomain=in' },
+      { name: 'Sagar Shivhare', role: 'Batch 2025', image: '/images/alumni/Sagar Shivhare 2021-2025.jpg', linkedIn: 'https://www.linkedin.com/in/sagar-shivhare-652605210/?originalSubdomain=in' },
+      { name: 'Uduta Sri Maha Chanakya Chandra', role: 'Batch 2025', image: '/images/alumni/Uduta Sri Maha Chanakya Chandra 21-25.jpg', linkedIn: 'https://www.linkedin.com/in/mahachanakya/?originalSubdomain=in' },
+      { name: 'Vedang Mukadam', role: 'Batch 2025', image: '/images/alumni/Vedang Mukadam 2021-2025.jpg', linkedIn: 'https://www.linkedin.com/in/vedang-mukadam-0401a9392/?originalSubdomain=in' },
+      
+      // Batch 2026
+      { name: 'Aditya Narayan Jaiswal', role: 'Batch 2026', image: '/images/alumni/Aditya Narayan Jaiswal 22-26.jpg', linkedIn: 'https://www.linkedin.com/in/aditya-narayan-jaiswal-4a946324a/?utm_source=chatgpt%2Ecom&originalSubdomain=in' },
+      { name: 'Narayan Singh', role: 'Batch 2026', image: '/images/alumni/Narayan Singh 22-26 batch.jpg', linkedIn: 'https://www.linkedin.com/in/narayan-singh-284423259/?utm_source=chatgpt%2Ecom&originalSubdomain=in' },
     ],
   },
   contact: {
